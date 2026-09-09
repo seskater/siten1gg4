@@ -188,52 +188,45 @@
 :root{
   --ink:#0E1621;--ink2:#243347;--muted:#5A6A7D;--faint:#8A98A9;
   --line:#D7DEE6;--panel:#F1F5F9;--red:#E4322B;--redsoft:#FDECEA;--redline:#F3B5B1;
-  --ok:#1C7F53;--oksoft:#E9F5EF;
+  --ok:#1C7F53;
 }
 html,body{margin:0;padding:0}
-body{
-  font-family:"Golos Text","DejaVu Sans",Arial,sans-serif;
-  color:var(--ink);font-size:8.5pt;line-height:1.36;background:#fff;
-}
+body{font-family:"Golos Text","DejaVu Sans",Arial,sans-serif;color:var(--ink);
+  font-size:8.6pt;line-height:1.37;background:#fff}
 .pg{page-break-after:always;break-after:page}
 .pg:last-of-type{page-break-after:auto;break-after:auto}
 
-/* masthead */
 .mast{display:flex;justify-content:space-between;align-items:center;
   border-bottom:2px solid var(--ink);padding-bottom:5pt;margin-bottom:9pt}
 .logo{font-weight:800;letter-spacing:.05em;font-size:9.5pt;display:flex;align-items:center;gap:4pt}
 .tri{width:0;height:0;border-left:4.5pt solid transparent;border-right:4.5pt solid transparent;border-bottom:8pt solid var(--red)}
 .mast .r{font-size:7.4pt;color:var(--muted)}
 
-h1{font-size:16.5pt;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:0 0 6pt;text-wrap:balance}
+h1{font-size:17pt;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:0 0 6pt;text-wrap:balance}
 h2{font-size:8pt;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red);
-   margin:0 0 4pt;padding-top:5pt;border-top:1px solid var(--line)}
+   margin:0 0 5pt;padding-top:6pt;border-top:1px solid var(--line)}
 h2.first{border-top:0;padding-top:0}
 p{margin:0 0 5pt}
 b{font-weight:700}
-.sub{font-size:10.2pt;line-height:1.34;font-weight:600;margin:0 0 6pt}
+.sub{font-size:10pt;line-height:1.34;font-weight:600;margin:0 0 6pt}
 .sub u{text-decoration:none;border-bottom:1.6pt solid var(--red);padding-bottom:.5pt;font-weight:700}
 .said{font-size:8.3pt;color:var(--ink2);font-style:italic;border-left:2pt solid var(--red);
   padding-left:7pt;margin:0 0 7pt}
-.mut{color:var(--muted)}
 .tiny{font-size:7.3pt;color:var(--muted);line-height:1.35}
 
-/* 3-col pipeline */
-.pipe{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--line);margin-bottom:8pt}
+.pipe{display:grid;grid-template-columns:1fr 1fr 1fr;border:1px solid var(--line);margin-bottom:8pt}
 .pipe>div{padding:5.5pt 6.5pt;border-right:1px solid var(--line)}
 .pipe>div:last-child{border-right:0}
 .pipe .k{font-size:6.8pt;font-weight:800;letter-spacing:.1em;color:var(--faint);margin-bottom:3pt}
 .pipe .v{font-weight:700;font-size:8.6pt;margin-bottom:2pt}
 .pipe .d{font-size:7.6pt;color:var(--ink2);line-height:1.33}
 
-/* two-col bullet list */
 .cols2{columns:2;column-gap:14pt}
 ul.b{list-style:none;padding:0;margin:0}
 ul.b li{position:relative;padding-left:9pt;margin-bottom:3pt;break-inside:avoid;line-height:1.34}
 ul.b li::before{content:"";position:absolute;left:0;top:.55em;width:4.5pt;height:1.2pt;background:var(--red)}
 .thesis{background:var(--panel);border-left:2.5pt solid var(--red);padding:4.5pt 8pt;margin-top:5pt;font-size:8.5pt}
 
-/* was / now */
 .wn{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);margin-bottom:6pt}
 .wn>div{padding:6pt 8pt}
 .wn .now{background:var(--redsoft);border-left:1px solid var(--redline)}
@@ -243,51 +236,57 @@ ul.b li::before{content:"";position:absolute;left:0;top:.55em;width:4.5pt;height
 .wn li{font-size:7.9pt;padding:2.2pt 0;border-bottom:.5pt dotted var(--line);line-height:1.28}
 .wn .now li{border-bottom-color:var(--redline)}
 .wn li:last-child{border-bottom:0}
-.wn b{font-weight:700}
 
-/* stat row */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:8pt}
-.stats>div{border-top:1.8pt solid var(--ink);padding:4pt 8pt 0 0}
-.stats .n{font-size:14pt;font-weight:800;letter-spacing:-.025em;line-height:1.05}
-.stats .c{font-size:7.6pt;font-weight:700;margin-top:1pt}
-.stats .x{font-size:7.1pt;color:var(--muted);margin-top:2pt;line-height:1.3}
+/* two routes */
+.two{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-top:2.2pt solid var(--ink);margin-bottom:5pt}
+.two>div{padding:7pt 9pt;border-right:1px solid var(--line)}
+.two>div:last-child{border-right:0;background:var(--redsoft)}
+.two .lab{font-size:6.8pt;font-weight:800;letter-spacing:.11em;color:var(--faint);margin-bottom:3pt}
+.two>div:last-child .lab{color:var(--red)}
+.two .h{font-weight:800;font-size:10pt;letter-spacing:-.015em;margin-bottom:4pt;line-height:1.15}
+.two p{font-size:7.9pt;line-height:1.36;margin:0 0 4pt;color:var(--ink2)}
+.two p:last-child{margin-bottom:0}
 
-/* tables */
 table{border-collapse:collapse;width:100%;font-size:7.9pt;margin-bottom:5pt}
 th{font-size:6.7pt;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:800;
    text-align:left;padding:3pt 7pt 3pt 0;border-bottom:1px solid var(--line)}
 td{padding:3.4pt 7pt 3.4pt 0;border-bottom:.5pt solid var(--line);vertical-align:top;line-height:1.3}
 td:last-child,th:last-child{padding-right:0}
 tr:last-child td{border-bottom:0}
-td.w{font-weight:700;white-space:nowrap}
-td.res{font-weight:800;color:var(--red);white-space:nowrap;text-align:right}
+td.w{font-weight:700}
+.pg2 td{padding-top:2.9pt;padding-bottom:2.9pt}
+.tp{font-size:6.8pt;font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;line-height:1.25;display:block}
+.tp.ready{color:var(--ok)}
+.tp.adapt{color:var(--ink2)}
+.tp.new{color:var(--red)}
 
-/* flow schema */
 .flow{border:1px solid var(--line);padding:7pt 8pt;margin-bottom:6pt}
-.fr{display:flex;align-items:center;gap:4pt;flex-wrap:nowrap;margin-bottom:3.5pt}
+.fr{display:flex;align-items:center;gap:4pt;margin-bottom:3.5pt}
 .fr:last-child{margin-bottom:0}
 .fl{font-size:6.7pt;font-weight:800;letter-spacing:.1em;color:var(--faint);width:52pt;flex:0 0 52pt}
 .fl.hot{color:var(--red)}
 .bx{border:.8pt solid var(--line);background:var(--panel);padding:2.5pt 6pt;font-size:7.6pt;font-weight:600;white-space:nowrap}
 .bx.dark{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700}
-.bx.hot{background:var(--redsoft);border-color:var(--red);color:var(--red);font-weight:700}
+.bx.hot{background:#fff;border-color:var(--red);color:var(--red);font-weight:700}
 .ar{color:var(--faint);font-size:8pt}
 .ar.hot{color:var(--red)}
 
-/* users + effects */
-.rowlist{display:grid;grid-template-columns:78pt 1fr;gap:3pt 8pt;font-size:7.9pt;margin-bottom:5pt}
+.rowlist{display:grid;grid-template-columns:80pt 1fr;gap:3.5pt 8pt;font-size:7.9pt;margin-bottom:5pt}
 .rowlist .k{font-weight:700}
 .rowlist .k.red{color:var(--red);font-size:7.2pt;letter-spacing:.08em;text-transform:uppercase;font-weight:800;padding-top:.5pt}
 .rowlist .v{color:var(--ink2);line-height:1.32}
 
-/* cta */
-.cta{background:var(--ink);color:#fff;padding:8pt 10pt;display:flex;justify-content:space-between;align-items:center;gap:10pt}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-bottom:6pt}
+.steps3>div{padding:5.5pt 8pt;border-right:1px solid var(--line)}
+.steps3>div:last-child{border-right:0}
+.steps3 .n{font-size:6.8pt;font-weight:800;color:var(--red);letter-spacing:.1em;margin-bottom:3pt}
+.steps3 .t{font-size:7.9pt;line-height:1.33;color:var(--ink2)}
+.steps3 .t b{color:var(--ink)}
+
+.cta{background:var(--ink);color:#fff;padding:7pt 10pt;display:flex;justify-content:space-between;align-items:center;gap:10pt}
 .cta .t{font-size:9.5pt;font-weight:700}
 .cta .s{font-size:7.4pt;color:#B7C2D0;margin-top:1.5pt}
 .cta .m{font-size:10pt;font-weight:800;white-space:nowrap;border-bottom:1.8pt solid var(--red);padding-bottom:1pt}
-.pg2 h2{padding-top:8pt}
-.pg2 .rowlist{gap:4.5pt 8pt}
-.pg2 .flow{padding:8pt}
 .foot{display:flex;justify-content:space-between;font-size:6.8pt;color:var(--faint);margin-top:6pt}
 </style></head><body>
 
@@ -304,28 +303,19 @@ td.res{font-weight:800;color:var(--red);white-space:nowrap;text-align:right}
   <p class="said">Это очень внимательный проверяющий: не устаёт, ничего не забывает и не боится начальника. Ему отдают всю стопку бумаг — он читает всё до последней строки и говорит: «вот ответ, а вот страница, где это написано».</p>
 
   <div class="pipe">
-    <div>
-      <div class="k">ПОСТУПАЕТ</div>
-      <div class="v">То, что уже есть</div>
-      <div class="d">Выписки и договоры, отчёты компаний группы, продажи и остатки, кадры с камер на линии, история клиентов.</div>
-    </div>
-    <div>
-      <div class="k">ПРОГРАММА ДЕЛАЕТ</div>
-      <div class="v">Читает всё и сверяет</div>
-      <div class="d">Сплошь, а не выборочно. Сверяет с источником, с планом, с другим периодом, с другой компанией. Находит расхождения.</div>
-    </div>
-    <div>
-      <div class="k">ЧЕЛОВЕК ПОЛУЧАЕТ</div>
-      <div class="v">Ответ и его источник</div>
-      <div class="d">«Здесь сходится, здесь нет», ссылка на строку в документе и что с этим делать. Решение принимает человек.</div>
-    </div>
+    <div><div class="k">ПОСТУПАЕТ</div><div class="v">То, что уже есть</div>
+      <div class="d">Выписки и договоры, отчёты компаний группы, продажи и остатки, кадры с камер на линии, история клиентов.</div></div>
+    <div><div class="k">ПРОГРАММА ДЕЛАЕТ</div><div class="v">Читает всё и сверяет</div>
+      <div class="d">Сплошь, а не выборочно. Сверяет с источником, с планом, с другим периодом, с другой компанией. Находит расхождения.</div></div>
+    <div><div class="k">ЧЕЛОВЕК ПОЛУЧАЕТ</div><div class="v">Ответ и его источник</div>
+      <div class="d">«Здесь сходится, здесь нет», ссылка на строку в документе и что с этим делать. Решение принимает человек.</div></div>
   </div>
 
   <h2>Как эта работа устроена сегодня</h2>
   <div class="cols2">
     <ul class="b">
-      <li>Всё делает человек вручную, обычно цепочка из 3–5 человек: собрал → посчитал → свёл → доложил.</li>
-      <li>Дни на один отчёт, недели на сводный по группе — он устаревает раньше, чем дойдёт до директора.</li>
+      <li>Всё делает человек вручную, через длинную цепочку: собрал → посчитал → свёл → доложил. На каждой передаче цифра может измениться.</li>
+      <li>Сводный отчёт по группе готовится так долго, что устаревает раньше, чем дойдёт до директора.</li>
       <li>Проверяют выборочно — проверить всё физически невозможно.</li>
       <li>Ошибки ручного переноса, разные версии файла, разные правила счёта в разных компаниях.</li>
       <li>Цифру можно подать удобно: взять другой период, не показать возвраты, округлить.</li>
@@ -336,112 +326,105 @@ td.res{font-weight:800;color:var(--red);white-space:nowrap;text-align:right}
 
   <h2>Что меняется</h2>
   <div class="wn">
-    <div class="was">
-      <div class="h">БЫЛО</div>
+    <div class="was"><div class="h">БЫЛО</div>
       <ol>
         <li><b>Человек</b> собирает данные</li>
         <li><b>Человек</b> считает и сводит отчёт</li>
         <li><b>Человек</b> проверяет сам себя — выборочно</li>
         <li><b>Директор</b> верит на слово</li>
-      </ol>
-    </div>
-    <div class="now">
-      <div class="h">СТАЛО</div>
+      </ol></div>
+    <div class="now"><div class="h">СТАЛО</div>
       <ol>
         <li><b>Программа</b> собирает данные</li>
         <li><b>Программа</b> считает и сводит отчёт</li>
         <li><b>Программа</b> проверяет всё сплошь, человек разбирает только расхождения</li>
         <li><b>Директор</b> видит цифру и её источник</li>
-      </ol>
-    </div>
+      </ol></div>
   </div>
-  <p class="tiny"><b>Программа берёт на себя:</b> сбор и обработку данных, сравнение, проверку по источнику, поиск ошибок и противоречий, подготовку отчётов, круглосуточный мониторинг. <b>Человеку остаётся решение и ответственность</b> — программа его не заменяет.</p>
-  <h2>Кто мы и что уже сделали</h2>
-  <div class="stats">
-    <div><div class="n">$800 тыс.</div><div class="c">экономии в год</div><div class="x">Серийное производство, 50+ линий</div></div>
-    <div><div class="n">+19%</div><div class="c">выручки</div><div class="x">Аптечная сеть, 120+ аптек</div></div>
-    <div><div class="n">$1 млрд+</div><div class="c">в документах</div><div class="x">7 000+ выписок в месяц</div></div>
-    <div><div class="n">3 500+</div><div class="c">сотрудников</div><div class="x">База знаний междунар. компании</div></div>
-  </div>
+  <p class="tiny"><b>Программа берёт на себя:</b> сбор и обработку данных, сравнение, проверку по источнику, поиск ошибок и противоречий, подготовку отчётов, круглосуточный мониторинг. <b>Человеку остаётся решение и ответственность.</b> <b>Как выглядит:</b> кабинет в браузере, встраивается в 1С, ERP или CRM. На экране — список, отметка «сходится / не сходится», рядом сам документ, внизу две кнопки. Для директора — одна страница со сводкой на телефоне. <b>Пользуются три уровня:</b> исполнитель разбирает только расхождения, руководитель подразделения видит все ошибки и кто их не разобрал, директор группы проверяет любую цифру нажатием.</p>
 
-  <table>
-    <thead><tr><th style="width:96pt">Проект</th><th>Что сделали и как это работало</th><th style="width:74pt;text-align:right">Результат</th></tr></thead>
-    <tbody>
-      <tr><td class="w">Производство<br><span class="tiny">50+ линий</span></td><td>Брак ловили глазами контролёров. Поставили камеры: программа отмечает дефект, технолог подтверждает и правит процесс.</td><td class="res">$800 тыс./год</td></tr>
-      <tr><td class="w">Аптечная сеть<br><span class="tiny">120+ аптек</span></td><td>Что держать на полке, решали по опыту. Сделали расчёт спроса и подсказки по истории продаж.</td><td class="res">+19% выручки</td></tr>
-      <tr><td class="w">Финансовые<br>документы</td><td>Тысячи выписок вручную. Каждая сумма извлекается со ссылкой на строку источника — специалист разбирает только расхождения.</td><td class="res">7 000+ / мес</td></tr>
-      <tr><td class="w">Международная<br>компания</td><td>Знание разбросано по тысячам документов. Сделали поиск и ответы по базе знаний — со ссылкой на документ-основание.</td><td class="res">3 500+ чел.</td></tr>
-    </tbody>
-  </table>
-  <p class="tiny">Принцип «каждая цифра со ссылкой на источник» — не гипотеза: он уже работает на потоке в 7 000 документов в месяц. Новое только одно — мы применяем его к задачам вашей группы.</p>
+  <h2>Что это даёт</h2>
+  <div class="rowlist">
+    <div class="k red">Время</div><div class="v">Сводный отчёт собирается сам и обновляется постоянно, а не готовится вручную неделями. Специалист разбирает только расхождения, а не весь массив.</div>
+    <div class="k red">Деньги</div><div class="v">Сокращаются потери: ручной труд на сверку, непойманный брак, замороженные в лишних запасах деньги, потерянные продажи и ушедшие клиенты.</div>
+    <div class="k red">Достоверность</div><div class="v">Проверяется каждый документ, а не выборка. У любой цифры есть источник. «Удобно поданная» цифра больше не проходит незаметно.</div>
+    <div class="k red">Простота</div><div class="v">Один экран, отметка «сходится / не сходится», две кнопки. Процесс менять не нужно, обучение занимает минуты.</div>
+    <div class="k red">Контроль</div><div class="v">У собственника появляется второй независимый контур. Результат перестаёт зависеть от конкретного человека и одинаково масштабируется на все компании группы.</div>
+  </div>
+  <p class="tiny"><b>Мы не обещаем эффект цифрой заранее.</b> Прежде чем что-то заявлять, замеряем текущее состояние процесса, а после пилота — то же самое по тем же критериям. Критерии согласуем до начала работы — например, для линии розлива это пропущенный брак, ложные срабатывания и время контроля.</p>
 </div>
 
 <!-- ================= PAGE 2 ================= -->
 <div class="pg pg2">
   <div class="mast">
     <div class="logo">CONE RED <span class="tri"></span></div>
-    <div class="r">Независимый контроль, польза и первый шаг</div>
+    <div class="r">Как мы работаем, что можно сделать и с чего начать</div>
   </div>
 
-  <h2 class="first">Кого программа может проверять</h2>
-  <p style="margin-bottom:5pt"><b>Может ли руководитель проверить достоверность того, что приносит сотрудник? Да</b> — программа берёт данные не из отчёта сотрудника, а из первоисточника, и показывает, откуда взялась каждая цифра.</p>
+  <h2 class="first">Два пути — как мы можем работать с вами</h2>
+  <div class="two">
+    <div>
+      <div class="lab">ПУТЬ ПЕРВЫЙ</div>
+      <div class="h">Адаптируем готовое ядро под вашу отрасль</div>
+      <p>Ядро уже собрано и работает: контроль качества на линии по видео, расчёт спроса и запасов в рознице, обработка финансовых документов со ссылкой на источник, поиск ответов по корпоративной базе знаний.</p>
+      <p>При переносе в новую отрасль меняются данные на входе и правила проверки — механизм остаётся тот же. Поэтому путь от решения до работающего пилота короткий.</p>
+    </div>
+    <div>
+      <div class="lab">ПУТЬ ВТОРОЙ</div>
+      <div class="h">Строим решение, которого ещё нет ни у кого</div>
+      <p>Если задача уникальна для вашего бизнеса, делаем её на том же ядре с нуля: формулируем, что считать правильным ответом, откуда брать данные и как проверять результат.</p>
+      <p>Формат под задачу: отчёт, платформа, встроенный модуль или API. Возможен совместный запуск продукта и совместное владение им.</p>
+    </div>
+  </div>
 
+  <h2>Что можно сделать в вашей группе</h2>
+  <table>
+    <thead><tr><th style="width:64pt">Направление</th><th style="width:112pt">Что даём на вход</th><th>Что получает руководитель</th><th style="width:72pt">Как делаем</th></tr></thead>
+    <tbody>
+      <tr><td class="w">Спиртзавод</td><td>Кадры с камеры на линии розлива</td><td>Отмеченные отклонения на кадрах; технолог подтверждает дефект</td><td><span class="tp adapt">Перенос готового опыта</span></td></tr>
+      <tr><td class="w">Дистрибуция</td><td>Продажи, остатки, история заказов</td><td>План пополнения по спросу; закупщик утверждает заказ</td><td><span class="tp adapt">Адаптация ядра</span></td></tr>
+      <tr><td class="w">Финансы</td><td>Выписки, договоры, комплаенс-документы</td><td>Суммы со ссылкой на строку источника; в работе только расхождения</td><td><span class="tp ready">Готовое решение</span></td></tr>
+      <tr><td class="w">Казино</td><td>История и активность игроков</td><td>Приоритеты удержания; менеджер утверждает действие по группе</td><td><span class="tp new">Новое · совместно</span></td></tr>
+      <tr><td class="w">Недвижимость</td><td>Параметры участка и доступные данные спроса</td><td>Сравнение сценариев застройки с проверяемыми основаниями</td><td><span class="tp new">Новое решение</span></td></tr>
+      <tr><td class="w">Холдинг</td><td>Отчёты компаний группы</td><td>Сравнение компаний по одним правилам, со ссылками на документы</td><td><span class="tp new">Под вашу задачу</span></td></tr>
+    </tbody>
+  </table>
+  <p class="tiny">Список открытый: механизм внутри одинаковый, поэтому задачу, которой в таблице нет, мы делаем тем же способом. Начинать имеет смысл с одного направления, а не со всей группы сразу.</p>
+
+  <h2>Кого программа может проверять</h2>
+  <p style="margin-bottom:5pt"><b>Может ли руководитель проверить достоверность того, что приносит сотрудник? Да</b> — программа берёт данные не из отчёта сотрудника, а из первоисточника, и показывает, откуда взялась каждая цифра.</p>
   <div class="flow">
     <div class="fr"><span class="fl">СЕГОДНЯ</span>
-      <span class="bx">Первичные данные</span><span class="ar">→</span>
-      <span class="bx">Сотрудник</span><span class="ar">→</span>
-      <span class="bx">Отчёт</span><span class="ar">→</span>
-      <span class="bx dark">Директор</span>
-      <span class="tiny" style="margin-left:6pt">Проверить нечем</span>
-    </div>
+      <span class="bx">Первичные данные</span><span class="ar">→</span><span class="bx">Сотрудник</span><span class="ar">→</span>
+      <span class="bx">Отчёт</span><span class="ar">→</span><span class="bx dark">Директор</span>
+      <span class="tiny" style="margin-left:6pt">Проверить нечем</span></div>
     <div class="fr"><span class="fl hot">С ПРОГРАММОЙ</span>
-      <span class="bx">Первичные данные</span><span class="ar hot">→</span>
-      <span class="bx hot">Программа</span><span class="ar hot">→</span>
-      <span class="bx hot">Сверка</span><span class="ar hot">→</span>
-      <span class="bx dark">Директор</span>
-      <span class="tiny" style="margin-left:6pt">Второй путь идёт мимо сотрудника</span>
-    </div>
+      <span class="bx">Первичные данные</span><span class="ar hot">→</span><span class="bx hot">Программа</span><span class="ar hot">→</span>
+      <span class="bx hot">Сверка</span><span class="ar hot">→</span><span class="bx dark">Директор</span>
+      <span class="tiny" style="margin-left:6pt">Второй путь идёт мимо сотрудника</span></div>
   </div>
-
   <table>
     <tbody>
-      <tr><td class="w" style="width:112pt">Бухгалтера</td><td>Сходятся ли суммы в отчёте с банковской выпиской — строка в строку, по всем операциям</td></tr>
+      <tr><td class="w" style="width:104pt">Бухгалтера</td><td>Сходятся ли суммы в отчёте с банковской выпиской — строка в строку, по всем операциям</td></tr>
       <tr><td class="w">Технолога</td><td>Весь ли брак учтён и совпадают ли отчёты смен с тем, что видела камера на линии</td></tr>
       <tr><td class="w">Закупщика</td><td>Обоснован ли объём закупки реальным спросом, не куплено ли лишнее</td></tr>
-      <tr><td class="w">Менеджера, CRM</td><td>С теми ли клиентами работали, выполнены ли обещанные действия, не упущен ли ценный клиент</td></tr>
-      <tr><td class="w">Аналитика</td><td>Воспроизводится ли расчёт: тот ли период, та ли база, те ли правила</td></tr>
+      <tr><td class="w">Менеджера, аналитика</td><td>С теми ли клиентами работали, выполнены ли обещанные действия, воспроизводится ли расчёт</td></tr>
       <tr><td class="w">Руководителя компании</td><td>Сопоставима ли его отчётность с другими компаниями группы, по одним ли правилам считали</td></tr>
     </tbody>
   </table>
-  <p class="tiny">Это не слежка за людьми, а независимая сверка цифр — как аудит, только каждый день и по всем документам, а не раз в год и выборочно. Для честного сотрудника это защита: его работу подтверждает система, а не только его слово.</p>
-
-  <h2>Как выглядит и кто пользуется</h2>
-  <p class="tiny" style="margin-top:4pt"><b>Как выглядит:</b> кабинет в браузере, встраивается в 1С, ERP или CRM. На экране — список, отметка «сходится / не сходится», рядом сам документ, внизу две кнопки. Для директора — одна страница со сводкой на телефоне. <b>Направления группы:</b> спиртзавод, дистрибуция, финансы, казино, недвижимость, отчётность холдинга — механизм внутри одинаковый, меняются только данные на входе.</p>
-
-  <div class="rowlist">
-    <div class="k">Исполнитель</div><div class="v">Бухгалтер, технолог, закупщик, менеджер. Не переносит цифры вручную, разбирает только расхождения, не боится обвинений в ошибке — у каждой цифры есть источник.</div>
-    <div class="k">Руководитель<br>подразделения</div><div class="v">Видит все ошибки, а не случайную выборку. Знает, где процесс встал и кто не разобрал свои расхождения. Проверяет людей одним экраном, а не разговором.</div>
-    <div class="k">Директор группы</div><div class="v">Цифры, которые можно проверить нажатием, не спрашивая никого. Компании группы посчитаны по одинаковым правилам и сравнимы между собой.</div>
-  </div>
-
-  <h2>Эффект от внедрения</h2>
-  <div class="rowlist">
-    <div class="k red">Время</div><div class="v">Сводный отчёт по группе — часы вместо недель. Ответ на вопрос директора — минуты. Специалист разбирает только расхождения, а не весь массив.</div>
-    <div class="k red">Деньги</div><div class="v">Сокращаются четыре вида потерь: ручной труд, непойманный брак, замороженные в лишних запасах деньги, потерянные продажи и ушедшие клиенты.</div>
-    <div class="k red">Достоверность</div><div class="v">Проверяется 100% документов вместо выборки, у каждой цифры есть источник, «удобно поданная» цифра больше не проходит незаметно.</div>
-    <div class="k red">Простота</div><div class="v">Один экран, отметка «сходится / не сходится», две кнопки. Процесс менять не нужно, обучение — минуты.</div>
-    <div class="k red">Контроль</div><div class="v">У собственника появляется второй независимый контур. Результат перестаёт зависеть от конкретного человека и одинаково масштабируется на все компании группы.</div>
-  </div>
-  <p class="tiny">Ни одна цифра эффекта не берётся с потолка: перед пилотом замеряем текущее состояние, после — то же самое по тем же критериям. Критерии уже определены по каждому направлению — например, для производства это пропущенный брак, ложные срабатывания и время контроля; для финансов — время обработки, расхождения с источником и объём ручной проверки.</p>
+  <p class="tiny">Это не слежка за людьми, а независимая сверка цифр — как аудит, только каждый день и по всем документам. Для честного сотрудника это защита: его работу подтверждает система, а не только его слово.</p>
 
   <h2>Первый шаг</h2>
+  <div class="steps3">
+    <div><div class="n">ШАГ ПЕРВЫЙ</div><div class="t"><b>Вы выбираете одну задачу</b> — из таблицы выше или свою, которой там нет.</div></div>
+    <div><div class="n">ШАГ ВТОРОЙ</div><div class="t"><b>Мы описываем решение:</b> какие данные нужны, что программа проверяет и по каким критериям оценим результат.</div></div>
+    <div><div class="n">ШАГ ТРЕТИЙ</div><div class="t"><b>Пилот на одном процессе</b> с замером до и после. Дальше вы решаете, масштабировать или нет.</div></div>
+  </div>
   <div class="cta">
-    <div>
-      <div class="t">Обсудим один бизнес вашей группы</div>
-      <div class="s">Не вся группа сразу: один процесс, критерии результата согласуем заранее, замер до и после. Объём работ и условия — по выбранной задаче.</div>
-    </div>
+    <div><div class="t">Обсудим одну задачу вашей группы</div>
+      <div class="s">Дима предложит, с какого процесса начать и как измерить результат. Объём работ и условия — по выбранной задаче.</div></div>
     <div class="m">dima@cone.red</div>
   </div>
-  <div class="foot"><span>CONE RED · Дима Левин</span><span>Результаты — отдельные внедрения. Применимость к вашим процессам проверяем на пилоте.</span></div>
+  <div class="foot"><span>CONE RED · Дима Левин</span><span>Применимость к вашим процессам определяем на пилоте.</span></div>
 </div>
 </body></html>
