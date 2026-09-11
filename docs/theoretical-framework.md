@@ -81,11 +81,21 @@ fidelity**, and with it a ready-made set of evaluation criteria rather than a va
 *dependent variable* of the thesis, not as an assumption. The four criteria are the
 measurement targets, and — critically — they are **separable**: a model can pass the Turing
 test and fail pattern correspondence, which is precisely the diagnostic situation the
-empirical work is designed to detect. The strongest current evidence sits here (Park et al.'s
-interview-grounded agents reproducing GSS responses at 85% of participants' own two-week
-test–retest reliability; Ashokkumar et al.'s prediction of 469 treatment effects at accuracy
-comparable to pooled human forecasters), and it is strong enough that dismissal is not a
+empirical work is designed to detect. The strongest current evidence sits here — Park et
+al.'s agents, built from two-hour interviews with a national sample of 1,052 Americans,
+reproduce held-out GSS responses at 83% of those participants' own two-week test–retest
+consistency (86% combining interviews and surveys); Ashokkumar et al. predict 476 treatment
+effects across 70 nationally representative survey experiments at *r* = .85, equalling or
+surpassing pooled human forecasters — and it is strong enough that dismissal is not a
 defensible position.
+
+One number in that evidence does more work for this project than any other: the same Park et
+al. agents built from **demographics alone** reach only 74%. Demographic conditioning is
+precisely the mechanism silicon sampling relies on, so the headline results are *not*
+vindication of persona prompting; the gains come from individuating self-report data that a
+researcher simulating a population they have not surveyed does not have. The fidelity
+ceiling for silicon sampling proper is therefore the 74% figure, not the 83–86% one — a
+distinction the enthusiastic reading of this literature routinely collapses.
 
 ### Layer 3 — Construct validity (the measurement apparatus)
 
@@ -183,13 +193,17 @@ Park, J. S., O'Brien, J., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. 
 Generative agents: Interactive simulacra of human behavior. *UIST '23*.
 DOI: [10.1145/3586183.3606763](https://doi.org/10.1145/3586183.3606763) ·
 [arXiv:2304.03442](https://arxiv.org/abs/2304.03442)
-Park, J. S., Zou, C. Q., Shaw, A., Hill, B. M., Cai, C., Morris, M. R., Willer, R., Liang, P.,
-& Bernstein, M. S. (2024). Generative agent simulations of 1,000 people.
-[arXiv:2411.10109](https://arxiv.org/abs/2411.10109)
+Park, J. S., Zou, C. Q., Kamphorst, J., Egan, N., Shaw, A., Hill, B. M., Cai, C.,
+Morris, M. R., Liang, P., Willer, R., & Bernstein, M. S. (2026). LLM agents grounded in
+self-reports enable general-purpose simulation of individuals.
+[arXiv:2411.10109](https://arxiv.org/abs/2411.10109) — *cite this title:* the paper was
+circulated in 2024 as "Generative agent simulations of 1,000 people" and retitled in the
+2026-06-28 revision, which also revised the headline accuracies.
 *Role:* the strongest constructive evidence, and the architectural state of the art —
 memory, reflection, and planning scaffolding, plus interview-grounded individual agents
 benchmarked against participants' own test–retest reliability. Establishes the ceiling the
-critical layer must explain rather than deny.
+critical layer must explain rather than deny — and, in the demographics-only condition, the
+much lower ceiling that applies to persona-prompted simulation without individuating data.
 
 **4. Angelina Wang, Jamie Morgenstern & John P. Dickerson — flattening and misportrayal.**
 Wang, A., Morgenstern, J., & Dickerson, J. P. (2025). Large language models that replace
@@ -230,10 +244,12 @@ design.
   opinions do language models reflect? *ICML 2023*, PMLR 202, 29971–30004.
   [proceedings.mlr.press/v202/santurkar23a.html](https://proceedings.mlr.press/v202/santurkar23a.html) ·
   [arXiv:2303.17548](https://arxiv.org/abs/2303.17548) — the OpinionQA misalignment benchmark.
-- **Ashokkumar, A., Hewitt, L., Ghezae, I., et al. (2026).** Large language models can predict
-  the results of social science experiments. *Nature*, 656, 115–122.
-  DOI: [10.1038/s41586-026-10742-x](https://doi.org/10.1038/s41586-026-10742-x) — 70 preregistered
-  experiments, 469 effects, with a partial pre-cutoff design.
+- **Ashokkumar, A., Hewitt, L., Ghezae, I., & Willer, R. (2026).** Large language models can
+  predict the results of social science experiments. *Nature*, 656(8126), 115–122.
+  DOI: [10.1038/s41586-026-10742-x](https://doi.org/10.1038/s41586-026-10742-x) — 70
+  pre-registered, nationally representative survey experiments; 476 treatment effects;
+  105,165 participants; *r* = .85 overall, rising to *r* = .90 on unpublished studies that
+  could not have entered the training data.
 - **Dillion, D., Tandon, N., Gu, Y., & Gray, K. (2023).** Can AI language models replace human
   participants? *Trends in Cognitive Sciences*, 27(7), 597–600.
   DOI: [10.1016/j.tics.2023.04.008](https://doi.org/10.1016/j.tics.2023.04.008) — and the reply,
@@ -282,7 +298,7 @@ Each layer contributes a directional prediction that the others do not:
 | Layer 2 (algorithmic fidelity) | Conditioned response *means* track human subgroup means with useful accuracy on well-represented populations and widely-discussed attitude objects. |
 | Layer 4 (flattening) | *Variance* is systematically compressed: simulated within-group heterogeneity falls well below human within-group heterogeneity, and the gap widens as corpus representation falls. |
 | Layer 4 (role play) | Simulated responses reflect the corpus's *depiction* of a group; divergence from human data is larger for self-referential/experiential items than for factual or normative ones. |
-| Layer 3 (construct validity) | Replication accuracy degrades sharply on post-training-cutoff studies relative to pre-cutoff ones — the contamination signature. |
+| Layer 3 (construct validity) | Accuracy degrades on post-cutoff studies relative to pre-cutoff ones — the contamination signature. **Stated in its strong form this is already partly disconfirmed:** Ashokkumar et al. report *r* = .90 on unpublished studies against *r* = .85 overall. The project therefore narrows it to the level where verbatim recall is actually plausible — reproduction of *specific items and their response distributions* — rather than the direction and rough magnitude of treatment effects, which appear to survive the cutoff. |
 | Layer 1 (generativity) | Emergent macro-outcomes in multi-agent LLM settings are not robust to theoretically irrelevant perturbations (prompt phrasing, option order, run seed), because the micro-rule is unconstrained. |
 
 Together these predict a specific joint signature — **good means, bad variance, worse
@@ -299,7 +315,10 @@ claim than either "LLMs work" or "LLMs don't."
   the framework says exactly what that would mean.
 - **Temporal validation as a standing control**, from the construct-validity layer: the
   pre-/post-cutoff split is a design requirement, not a robustness check. Ashokkumar et al.'s
-  partial use of it is the model to extend.
+  unpublished-studies comparison is the model to extend — and their result is a warning
+  against assuming the contamination story: the project must be prepared to report that
+  contamination is *not* what drives fidelity for effect-direction tasks, and to locate the
+  level (item reproduction, distributional shape) at which it does bite.
 - **Prompt-space sampling rather than prompt selection**, from Layers 1 and 4: because the
   micro-rule is opaque and results are known to be prompt-sensitive, the analysis treats
   prompt variants and run seeds as a *sampled design factor* with reported variance
@@ -330,3 +349,39 @@ thesis's contribution is therefore a **validity framework for LLM-based social s
 — generativist in its epistemology, psychometric in its evidentiary standards, and critical
 in its account of why the failures are structural — together with an empirical demonstration
 of where that boundary currently lies.
+
+---
+
+## 5. Citation verification record
+
+Every DOI and preprint identifier above was resolved and checked against source metadata on
+**2026-09-11** (Crossref REST API for DOIs; arXiv API for preprints; publisher pages for the
+NBER working paper and the Ashokkumar et al. article). All 15 DOIs resolve, and author lists,
+venues, volumes and page ranges match as cited.
+
+Three discrepancies were found and corrected in this revision; they are recorded here because
+each affects a substantive claim, not merely a reference:
+
+1. **Park et al. (arXiv:2411.10109) was retitled and revised.** It is no longer "Generative
+   agent simulations of 1,000 people" but "LLM Agents Grounded in Self-Reports Enable
+   General-Purpose Simulation of Individuals" (revision of 2026-06-28), with an expanded
+   eleven-author list. The revision also changed the headline accuracies: the earlier 85%
+   figure is superseded by 83% (interview-only), 82% (survey-only) and 86% (combined), against
+   **74% for demographics-only agents**, on a sample of 1,052. The demographics-only figure is
+   now load-bearing for §2 Layer 2 and §4.2, since it isolates the performance of exactly the
+   conditioning mechanism that silicon sampling uses.
+2. **Ashokkumar et al. report 476 treatment effects, not 469**, across 70 pre-registered
+   nationally representative survey experiments and 105,165 participants.
+3. **The contamination hypothesis required weakening.** Ashokkumar et al. report *r* = .90 on
+   unpublished studies that could not have been in the training data, against *r* = .85
+   overall — evidence *against* the strong form of the pre-/post-cutoff prediction stated in
+   the earlier draft. The hypothesis in §4.2 has been narrowed accordingly rather than left
+   standing.
+
+One item was checked because it looked wrong and proved correct: NBER Working Paper 31122 is
+indeed co-authored by **Horton, Filippas & Manning**, not by Horton alone as the widely cited
+2023 version of the *Homo silicus* paper suggests.
+
+Sources that are books or book chapters (Epstein 2006; Weber 1922/1978; Geertz 1973) carry no
+DOI and were not machine-verified; cite them from a specific edition with page numbers when
+drafting.
