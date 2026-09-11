@@ -46,6 +46,15 @@ handle the underdetermination of micro-rules by macro-outcomes, and how to disti
 model that is *useful* from one that is *true*. LLM-based simulation has largely restarted
 this conversation from zero, and it does not have to.
 
+Larooij and Törnberg's review of the "generative ABM" literature is the anchor here, and it
+supplies an empirical finding rather than an exhortation: across the published corpus,
+awareness of the historical ABM debates is limited, validation is poorly addressed, many
+studies rest on subjective assessments of model *believability*, and even the most rigorous
+cases fail to evidence operational validity. Their conclusion — that LLMs are likely to
+**exacerbate rather than resolve** the long-standing problems of ABM, because black-box
+micro-rules, cultural bias and stochastic output make emergent causal mechanisms harder to
+disentangle — is the thesis this project inherits and tests, not one it has to construct.
+
 **What this layer settles for the project:** LLM agents are treated as a new *class of
 micro-specification* inside the ABM tradition, not as a new kind of science. Schelling's
 segregation model is the reference case: its value came from the transparency and minimality
@@ -54,7 +63,9 @@ counterintuitive macro-result interpretable. An LLM agent inverts exactly this p
 its micro-rule is a hundred-billion-parameter function that no one can state. This
 inversion, not raw predictive accuracy, is the central theoretical tension the thesis
 develops: **LLM agents buy behavioral richness at the cost of the mechanistic transparency
-that made generative social science explanatory in the first place.**
+that made generative social science explanatory in the first place.** Believability is
+thereby identified as the field's characteristic validity error — a criterion that feels like
+validation while testing nothing a reader should be persuaded by.
 
 ### Layer 2 — *Homo silicus* and algorithmic fidelity (the substantive hypothesis under test)
 
@@ -76,6 +87,14 @@ fidelity**, and with it a ready-made set of evaluation criteria rather than a va
 | **Backward continuity** | Responses are consistent with the demographic backstory used to condition the model |
 | **Forward continuity** | Responses extend into a coherent, plausible continuation of that persona |
 | **Pattern correspondence** | Relationships *among* variables — demographics, attitudes, behaviors — mirror those in human data |
+
+The construct has since been sharpened by the same group. Lyman, Hepner, Argyle and
+colleagues show that **alignment training and algorithmic fidelity stand in tension**:
+the RLHF/instruction-tuning that makes a model usable is also what pulls its outputs toward
+a homogenized, normatively sanitized centre and away from the distributional texture that
+fidelity requires. This matters for the project's causal story, because it means the
+flattening documented in Layer 4 is not only a corpus-representation effect but partly an
+*artefact of post-training* — a variable that can be manipulated, not merely lamented.
 
 **What this layer settles for the project:** algorithmic fidelity is treated as the
 *dependent variable* of the thesis, not as an assumption. The four criteria are the
@@ -138,6 +157,24 @@ Santurkar et al. (systematic misalignment with 60 US demographic groups, on the 
 partisan divide on climate change), and Wang et al. (variance collapse) are **structural
 consequences of how these systems are built**, not incidental defects awaiting a larger model.
 
+Kozlowski and Evans give this layer its working taxonomy. They identify six properties of
+current models that impair realistic simulation of human subjects, and the project adopts
+these as its inventory of limits because each is separately diagnosable:
+
+| Impairment | What it breaks |
+|---|---|
+| **Bias** | Systematic displacement of a simulated group from its human counterpart |
+| **Uniformity** | Variance collapse — the flattening mechanism, stated as a general property |
+| **Atemporality** | No stable position in historical time; the corpus blends eras, so period-specific attitudes are unrecoverable |
+| **Disembodiment** | No sensory, material or situated experience underwriting reported behavior |
+| **Linguistic cultures** | Fidelity is bounded by what is *written*, and written unevenly across languages and groups |
+| **Alien intelligence** | The system's failure modes are not human failure modes, so human-likeness on average does not imply human-likeness at the margin |
+
+Three of these — atemporality, disembodiment and alien intelligence — are absent from the
+CS-side literature this project also draws on, and they are the ones that bear hardest on
+sociological use, which is the reason the taxonomy is adopted wholesale rather than
+reconstructed.
+
 **What this layer settles for the project:** the scope conditions. Because the model is
 role-playing a distribution over *textual depictions* of a group rather than sampling from
 the group, the framework predicts a specific and testable signature — **central tendencies
@@ -169,24 +206,30 @@ rather than merely informational (Harding et al.).
 
 ### Central (five)
 
-**1. Joshua M. Epstein — generative social science.**
-Epstein, J. M. (1999). Agent-based computational models and generative social science.
-*Complexity*, 4(5), 41–60.
-DOI: [10.1002/(SICI)1099-0526(199905/06)4:5<41::AID-CPLX9>3.0.CO;2-F](https://doi.org/10.1002/(SICI)1099-0526(199905/06)4:5%3C41::AID-CPLX9%3E3.0.CO;2-F)
-*Role:* supplies the epistemology of simulation-as-explanation and the generativist standard
-against which LLM agents are assessed. Read alongside Schelling, T. C. (1971), Dynamic models
-of segregation, *Journal of Mathematical Sociology*, 1(2), 143–186,
-DOI: [10.1080/0022250X.1971.9989794](https://doi.org/10.1080/0022250X.1971.9989794), as the
-paradigm case of explanatory transparency that LLM agents forfeit.
+**1. Maik Larooij & Petter Törnberg — does generative simulation actually solve ABM's problems?**
+Larooij, M., & Törnberg, P. (2025). Validation is the central challenge for generative social
+simulation: a critical review of LLMs in agent-based modeling. *Artificial Intelligence
+Review*, 59(1).
+DOI: [10.1007/s10462-025-11412-6](https://doi.org/10.1007/s10462-025-11412-6) ·
+preprint (different title): [arXiv:2504.03274](https://arxiv.org/abs/2504.03274), "Do Large
+Language Models Solve the Problems of Agent-Based Modeling? A Critical Review of Generative
+Social Simulations"
+*Role:* supplies Layer 1. A systematic review of the generative-ABM literature finding that
+validation is poorly addressed, that "believability" is standing in for operational validity,
+and that LLMs are likely to *exacerbate* rather than resolve ABM's long-standing problems.
+This is the paper that carries the generative-social-science tradition into the LLM era, so
+the project cites it rather than reconstructing the bridge from Epstein (1999) by hand.
 
-**2. Lisa P. Argyle and colleagues — silicon samples and algorithmic fidelity.**
-Argyle, L. P., Busby, E. C., Fulda, N., Gubler, J. R., Rytting, C., & Wingate, D. (2023).
-Out of one, many: Using language models to simulate human samples. *Political Analysis*,
-31(3), 337–351.
-DOI: [10.1017/pan.2023.2](https://doi.org/10.1017/pan.2023.2) ·
-preprint: [arXiv:2209.06899](https://arxiv.org/abs/2209.06899)
-*Role:* the project's central construct and its four evaluation criteria. This is the paper
-whose claims the empirical work is designed to test, extend, and bound.
+**2. Austin C. Kozlowski & James Evans — the promise and peril of simulated subjects.**
+Kozlowski, A. C., & Evans, J. (2025). Simulating subjects: The promise and peril of artificial
+intelligence stand-ins for social agents and interactions. *Sociological Methods & Research*,
+54(3), 1017–1073.
+DOI: [10.1177/00491241251337316](https://doi.org/10.1177/00491241251337316)
+*Role:* the closest published statement of this project's own question, from inside
+sociological methodology rather than computer science. Supplies Layer 4's six-part taxonomy of
+impairments — bias, uniformity, atemporality, disembodiment, linguistic cultures, alien
+intelligence — together with a constructive methodological foundation for simulating subjects
+and their interactions.
 
 **3. Joon Sung Park & Michael S. Bernstein — generative agents.**
 Park, J. S., O'Brien, J., Cai, C. J., Morris, M. R., Liang, P., & Bernstein, M. S. (2023).
@@ -208,7 +251,7 @@ much lower ceiling that applies to persona-prompted simulation without individua
 **4. Angelina Wang, Jamie Morgenstern & John P. Dickerson — flattening and misportrayal.**
 Wang, A., Morgenstern, J., & Dickerson, J. P. (2025). Large language models that replace
 human participants can harmfully misportray and flatten identity groups.
-*Nature Machine Intelligence*, 7, 400–411.
+*Nature Machine Intelligence*, 7(3), 400–411.
 DOI: [10.1038/s42256-025-00986-z](https://doi.org/10.1038/s42256-025-00986-z) ·
 [arXiv:2402.01908](https://arxiv.org/abs/2402.01908)
 *Role:* converts the critique of persona simulation into a mechanism with a testable
@@ -223,8 +266,63 @@ experiments, content analysis and ABM, against bias, replication, and infrastruc
 concerns — and motivates the open, auditable-infrastructure commitments of the research
 design.
 
+### A note on the venue: *Sociological Methods & Research* 54(3), 2025
+
+Sources 2 and several below come from a single special issue devoted to generative AI in
+sociological method, introduced by Davidson & Karell (2025), "Integrating generative
+artificial intelligence into social science research: Measurement, prompting, and
+simulation," 54(3), 775–793,
+DOI: [10.1177/00491241251339184](https://doi.org/10.1177/00491241251339184). Its eleven
+articles are the most concentrated disciplinary treatment of this project's question
+currently available, and four bear on simulation directly:
+
+- **Kozlowski & Evans**, Simulating subjects (1017–1073) — central source 2 above.
+- **Broska, D., Howes, M., & van Loon, A. (2025).** The mixed subjects design: Treating large
+  language models as potentially informative observations. 54(3), 1074–1109.
+  DOI: [10.1177/00491241251326865](https://doi.org/10.1177/00491241251326865) — the
+  constructive design answer to the replacement question: treat simulated responses as
+  *informative observations to be combined with* human data under explicit assumptions,
+  rather than as substitutes for it. This is the design template the project adopts in §4.3.
+- **Lyman, A., Hepner, B., Argyle, L. P., Busby, E. C., Gubler, J. R., & Wingate, D. (2025).**
+  Balancing large language model alignment and algorithmic fidelity in social science research.
+  54(3), 1110–1155.
+  DOI: [10.1177/00491241251342008](https://doi.org/10.1177/00491241251342008) — the Argyle
+  team's own follow-up, establishing alignment training as a *cause* of fidelity loss and so
+  as a manipulable variable rather than a fixed property.
+- **Boelaert, J., Coavoux, S., Ollion, É., Petev, I., & Präg, P. (2025).** Machine bias: How do
+  generative language models answer opinion polls? 54(3), 1156–1196.
+  DOI: [10.1177/00491241251330582](https://doi.org/10.1177/00491241251330582) — systematic
+  evidence on synthetic poll response, including the distributional distortions the project
+  predicts.
+- **Zhang, S., Xu, J., & Alvero, AJ. (2025).** Generative AI meets open-ended survey responses:
+  Research participant use of AI and homogenization. 54(3), 1197–1242.
+  DOI: [10.1177/00491241251327130](https://doi.org/10.1177/00491241251327130) — the mirror-image
+  threat, and one the project must control for: *human* respondents using AI homogenize the
+  benchmark data against which simulation is validated.
+
 ### Supporting
 
+- **Epstein, J. M. (1999).** Agent-based computational models and generative social science.
+  *Complexity*, 4(5), 41–60.
+  DOI: [10.1002/(SICI)1099-0526(199905/06)4:5<41::AID-CPLX9>3.0.CO;2-F](https://doi.org/10.1002/(SICI)1099-0526(199905/06)4:5%3C41::AID-CPLX9%3E3.0.CO;2-F)
+  — the generativist standard ("if you didn't grow it, you didn't explain it"), read through
+  Larooij & Törnberg. With **Schelling, T. C. (1971)**, Dynamic models of segregation,
+  *Journal of Mathematical Sociology*, 1(2), 143–186,
+  DOI: [10.1080/0022250X.1971.9989794](https://doi.org/10.1080/0022250X.1971.9989794), as the
+  paradigm case of explanatory transparency that LLM agents forfeit.
+- **Argyle, L. P., Busby, E. C., Fulda, N., Gubler, J. R., Rytting, C., & Wingate, D. (2023).**
+  Out of one, many: Using language models to simulate human samples. *Political Analysis*,
+  31(3), 337–351. DOI: [10.1017/pan.2023.2](https://doi.org/10.1017/pan.2023.2) ·
+  [arXiv:2209.06899](https://arxiv.org/abs/2209.06899) — the origin of *algorithmic fidelity*
+  and its four criteria, which the project still uses as its evaluation scaffold; superseded
+  as a framework statement by Lyman et al. (2025) above, but indispensable as the source of
+  the construct.
+- **Anthis, J. R., Liu, R., Richardson, S. M., Kozlowski, A. C., Koch, B., Evans, J.,
+  Brynjolfsson, E., & Bernstein, M. (2025).** LLM social simulations are a promising research
+  method. *ICML 2025*. [arXiv:2504.02234](https://arxiv.org/abs/2504.02234) — the deliberate
+  counterweight to Larooij & Törnberg: five tractable challenges, and the position that
+  simulation is already usable for pilot and exploratory work. Holding these two reviews
+  against each other is how the project keeps "possibilities" and "limits" in the same frame.
 - **Horton, J. J., Filippas, A., & Manning, B. S. (2023).** Large language models as
   simulated economic agents: What can we learn from *Homo silicus*? NBER Working Paper 31122.
   [nber.org/papers/w31122](https://www.nber.org/papers/w31122) ·
@@ -236,6 +334,11 @@ design.
   stochastic parrots: Can language models be too big? *FAccT '21*, 610–623.
   DOI: [10.1145/3442188.3445922](https://doi.org/10.1145/3442188.3445922) — form-without-meaning;
   corpus skew as the source of demographic distortion.
+- **Messeri, L., & Crockett, M. J. (2024).** Artificial intelligence and illusions of
+  understanding in scientific research. *Nature*, 627(8002), 49–58.
+  DOI: [10.1038/s41586-024-07146-0](https://doi.org/10.1038/s41586-024-07146-0) — the
+  epistemic-risk argument (illusions of explanatory depth, monocultures of knowing) that
+  generalizes this project's worry beyond simulation to the discipline's knowledge base.
 - **Bisbee, J., Clinton, J. D., Dorff, C., Kenkel, B., & Larson, J. M. (2024).** Synthetic
   replacements for human survey data? The perils of large language models. *Political Analysis*,
   32(4), 401–416. DOI: [10.1017/pan.2024.5](https://doi.org/10.1017/pan.2024.5) — instability and
@@ -243,7 +346,9 @@ design.
 - **Santurkar, S., Durmus, E., Ladhak, F., Lee, C., Liang, P., & Hashimoto, T. (2023).** Whose
   opinions do language models reflect? *ICML 2023*, PMLR 202, 29971–30004.
   [proceedings.mlr.press/v202/santurkar23a.html](https://proceedings.mlr.press/v202/santurkar23a.html) ·
-  [arXiv:2303.17548](https://arxiv.org/abs/2303.17548) — the OpinionQA misalignment benchmark.
+  [arXiv:2303.17548](https://arxiv.org/abs/2303.17548) — the OpinionQA misalignment benchmark
+  (60 US demographic groups; misalignment on par with the Democrat–Republican divide on
+  climate change).
 - **Ashokkumar, A., Hewitt, L., Ghezae, I., & Willer, R. (2026).** Large language models can
   predict the results of social science experiments. *Nature*, 656(8126), 115–122.
   DOI: [10.1038/s41586-026-10742-x](https://doi.org/10.1038/s41586-026-10742-x) — 70
@@ -261,9 +366,14 @@ design.
   W. A. (2023).** AI and the transformation of social science research. *Science*, 380(6650),
   1108–1109. DOI: [10.1126/science.adi1778](https://doi.org/10.1126/science.adi1778).
 - **Lin, Z. (2025).** Six fallacies in substituting large language models for human participants.
-  *Advances in Methods and Practices in Psychological Science*.
+  *Advances in Methods and Practices in Psychological Science*, 8(3).
   DOI: [10.1177/25152459251357566](https://doi.org/10.1177/25152459251357566) — a taxonomy of
   inferential errors that doubles as a checklist for the analysis plan.
+- **Ollion, É., Shen, R., Macanovic, A., & Chatelain, A. (2024).** The dangers of using
+  proprietary LLMs for research. *Nature Machine Intelligence*, 6(1), 4–5.
+  DOI: [10.1038/s42256-023-00783-6](https://doi.org/10.1038/s42256-023-00783-6) — model
+  deprecation and version drift as threats to reproducibility; the argument for open-weights
+  replication in the design.
 - **Cronbach, L. J., & Meehl, P. E. (1955).** Construct validity in psychological tests.
   *Psychological Bulletin*, 52(4), 281–302.
   DOI: [10.1037/h0040957](https://doi.org/10.1037/h0040957) — the nomological-network standard.
@@ -300,6 +410,8 @@ Each layer contributes a directional prediction that the others do not:
 | Layer 4 (role play) | Simulated responses reflect the corpus's *depiction* of a group; divergence from human data is larger for self-referential/experiential items than for factual or normative ones. |
 | Layer 3 (construct validity) | Accuracy degrades on post-cutoff studies relative to pre-cutoff ones — the contamination signature. **Stated in its strong form this is already partly disconfirmed:** Ashokkumar et al. report *r* = .90 on unpublished studies against *r* = .85 overall. The project therefore narrows it to the level where verbatim recall is actually plausible — reproduction of *specific items and their response distributions* — rather than the direction and rough magnitude of treatment effects, which appear to survive the cutoff. |
 | Layer 1 (generativity) | Emergent macro-outcomes in multi-agent LLM settings are not robust to theoretically irrelevant perturbations (prompt phrasing, option order, run seed), because the micro-rule is unconstrained. |
+| Layer 4 (atemporality, *Kozlowski & Evans*) | Simulated attitudes cannot be moved reliably to a specified historical period: conditioning on a year produces responses closer to the corpus-blended present than to that period's human data. Directly testable against archived time series (GSS, ANES). |
+| Layer 2 (alignment, *Lyman et al.*) | Fidelity varies systematically with post-training: base or less heavily aligned models show wider, less normatively sanitized response distributions than their aligned counterparts on the same items. Makes alignment a manipulated factor, not a constant. |
 
 Together these predict a specific joint signature — **good means, bad variance, worse
 tails, contamination-sensitive, perturbation-fragile** — which is a far more falsifiable
@@ -334,6 +446,25 @@ claim than either "LLMs work" or "LLMs don't."
   independent observations. Uncertainty quantification cannot use the sampling theory that
   human survey work uses, and the project treats this as an open methodological problem to
   state explicitly rather than a detail to finesse.
+- **A mixed-subjects design rather than a replacement design**, from Broska et al.: the
+  study does not ask whether simulated respondents can *stand in for* humans, but how
+  simulated and human observations should be **combined** under stated assumptions, with the
+  simulation's weight determined by its measured fidelity rather than assumed. This converts
+  the project's negative findings into usable methodology instead of a verdict.
+- **Believability is not a validation criterion**, from Larooij & Törnberg: no claim in this
+  project rests on whether outputs read as plausible to the researcher or to judges. Face
+  plausibility is recorded as a descriptive property and explicitly excluded from the
+  inferential chain, because their review identifies precisely this substitution as the
+  field's dominant validity failure.
+- **Alignment as a manipulated factor**, from Lyman et al.: where licensing permits, the same
+  protocol is run across models differing in post-training, so fidelity loss attributable to
+  alignment is separated from loss attributable to corpus representation. Paired with
+  open-weights replication, following Ollion et al. on version drift and deprecation.
+- **Benchmark integrity as a threat to be controlled**, from Zhang et al.: human survey data
+  collected after widespread LLM availability may itself be partly AI-generated and
+  homogenized. The validation targets are therefore dated and, where possible, drawn from
+  pre-2023 collection waves — otherwise the study risks measuring simulated text against
+  simulated text and reporting the agreement as fidelity.
 - **Ethical and epistemic positioning**, from Harding et al. and Bail: human participants
   carry standing that is partly political, and simulation cannot discharge obligations of
   representation. Simulated data are positioned as *pre-registration-stage instruments* —
@@ -349,6 +480,13 @@ thesis's contribution is therefore a **validity framework for LLM-based social s
 — generativist in its epistemology, psychometric in its evidentiary standards, and critical
 in its account of why the failures are structural — together with an empirical demonstration
 of where that boundary currently lies.
+
+Positioned against the two recent reviews, the project sits deliberately between them:
+Larooij and Törnberg conclude that generative simulation worsens ABM's validation problem,
+Anthis et al. that its promise is reachable by addressing five tractable challenges. Both
+are position papers. Neither settles the question empirically for a specified construct and
+population, and doing so — with variance, not correlation, as the discriminating outcome —
+is the gap this thesis occupies.
 
 ---
 
@@ -382,6 +520,27 @@ One item was checked because it looked wrong and proved correct: NBER Working Pa
 indeed co-authored by **Horton, Filippas & Manning**, not by Horton alone as the widely cited
 2023 version of the *Homo silicus* paper suggests.
 
-Sources that are books or book chapters (Epstein 2006; Weber 1922/1978; Geertz 1973) carry no
-DOI and were not machine-verified; cite them from a specific edition with page numbers when
-drafting.
+Sources that are books or book chapters (Weber 1922/1978; Geertz 1973) carry no DOI and were
+not machine-verified; cite them from a specific edition with page numbers when drafting.
+
+### Second pass — source selection revised (2026-09-11)
+
+The central five were reselected for closer correspondence to the topic. Park et al., Wang et
+al. and Bail are retained. Two were replaced and **demoted to supporting rather than dropped**,
+since both remain necessary citations:
+
+- **Epstein (1999) → Larooij & Törnberg (2025).** Epstein predates LLMs by two decades and
+  required the document to build the bridge from generative social science to generative ABM
+  itself. Larooij & Törnberg have now built it, and supply a reviewed empirical finding
+  (validation failure; believability substituting for operational validity) where Epstein
+  supplied only a standard.
+- **Argyle et al. (2023) → Kozlowski & Evans (2025).** Argyle et al. is a method demonstration
+  that originated *algorithmic fidelity*; it is not a framework for possibilities and limits.
+  Kozlowski & Evans is, states the question in this project's own terms, comes from
+  sociological methodology rather than CS, and supplies the six-part taxonomy now used in
+  Layer 4. Argyle's own strand is carried forward by Lyman et al. (2025), which is the more
+  current statement of the fidelity construct.
+
+All eleven newly added DOIs were resolved against Crossref on the same date, and the contents
+of *Sociological Methods & Research* 54(3) were enumerated through the Crossref journal API to
+confirm the special issue and its article-level pagination.
