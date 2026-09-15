@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Intake and Interview Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#0F1A2A; --ink-2:#1B2A3E;
+  --paper:#FFFFFF; --paper-2:#F1F4F8; --paper-3:#E7ECF2;
+  --body-ink:#152131; --muted:#5A6878; --muted-2:#8593A3;
+  --line:#D7DDE5; --line-dark:#2B3B51;
+  --accent:#D2542A; --accent-soft:#FBEDE7; --accent-lift:#F07A4C;
+  --good:#0F766E; --good-soft:#E3F1EF;
+  --display:"Archivo","Helvetica Neue",sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper-2);color:var(--body-ink);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+
+.page{
+  width:1280px;height:720px;background:var(--paper);
+  padding:54px 62px;display:flex;flex-direction:column;
+  position:relative;overflow:hidden;margin:0 auto 24px;break-after:page;
+}
+.page:last-child{break-after:auto;margin-bottom:0}
+.page.dark{background:var(--ink);color:#EEF2F7}
+.page.tint{background:var(--paper-2)}
+
+h1,h2,h3{margin:0;text-wrap:balance;font-family:var(--display)}
+h1{font-weight:700;font-size:52px;line-height:1.05;letter-spacing:-.025em}
+h2{font-weight:700;font-size:34px;line-height:1.08;letter-spacing:-.02em}
+h3{font-family:var(--body);font-weight:600;font-size:15.5px;line-height:1.3}
+p{margin:0}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);flex:none}
+.dark .eyebrow{color:var(--accent-lift)}
+.dark .eyebrow::before{background:var(--accent-lift)}
+
+.lede{font-size:18.5px;line-height:1.45;color:var(--muted);max-width:60ch}
+.dark .lede{color:#AEBCCB}
+.sub{color:var(--muted);font-size:13.5px;line-height:1.45}
+.route{font-family:var(--mono);font-size:11.5px;background:var(--paper-2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;color:var(--muted)}
+
+.pnum,.brandline{
+  position:absolute;bottom:26px;font-family:var(--mono);font-size:10.5px;
+  color:var(--muted-2);letter-spacing:.1em;font-variant-numeric:tabular-nums;
+}
+.pnum{left:62px}
+.brandline{right:62px}
+.dark .pnum,.dark .brandline{color:#6E7F92}
+
+/* ---------- cover ---------- */
+.cover{flex:1;display:flex;flex-direction:column;justify-content:center}
+.cover h1{max-width:19ch}
+.cover .lede{margin-top:24px}
+.covermeta{
+  display:flex;gap:0;margin-top:46px;border-top:1px solid var(--line-dark);
+}
+.covermeta div{padding:16px 30px 0 0;margin-right:30px;border-right:1px solid var(--line-dark)}
+.covermeta div:last-child{border-right:0}
+.covermeta span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#6E7F92;margin-bottom:5px}
+.covermeta b{font-weight:500;font-size:14.5px;color:#EEF2F7}
+
+/* ---------- problem ---------- */
+.probs{display:grid;grid-template-columns:1fr 1fr;gap:0 46px;margin-top:26px;flex:1;align-content:start}
+.prob{padding:20px 0;border-bottom:1px solid var(--line)}
+.prob h3{font-size:17px;margin-bottom:5px;display:flex;gap:10px;align-items:baseline}
+.prob h3 em{font-family:var(--mono);font-style:normal;font-size:12px;color:var(--accent)}
+.prob p{font-size:13.8px;color:var(--muted);line-height:1.45}
+
+/* ---------- diagram ---------- */
+figure{margin:0}
+.fig{margin-top:22px}
+.fig svg{width:100%;height:auto;display:block}
+figcaption{font-size:13px;color:var(--muted);margin-top:14px;max-width:88ch}
+
+/* ---------- two-col ---------- */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:24px;flex:1}
+.two.wide-left{grid-template-columns:1.12fr 1fr}
+.stackcol{display:flex;flex-direction:column;gap:15px}
+
+.doc{
+  background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:0 8px 8px 0;padding:16px 18px;font-size:13.5px;line-height:1.75;
+}
+.doc .field{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:#9B3A17;border-radius:4px;padding:1px 5px}
+.doc-head{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted-2);margin-bottom:10px}
+
+.bullets{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.bullets li{display:grid;grid-template-columns:13px 1fr;gap:11px;font-size:13.8px;color:var(--muted);line-height:1.45}
+.bullets li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:8px}
+.bullets b{color:var(--body-ink);font-weight:600}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px;list-style:none;margin:0;padding:0}
+.chips li{font-size:12.3px;border:1px solid var(--line);background:var(--paper);color:var(--muted);padding:3px 9px;border-radius:999px}
+.chips li.hl{border-color:var(--accent);background:var(--accent-soft);color:#9B3A17}
+
+.shot{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper-2)}
+.shot img{width:100%;display:block}
+.shotcap{font-family:var(--mono);font-size:10.5px;color:var(--muted-2);margin-top:7px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- surface cards (messaging) ---------- */
+.surfaces{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+.surface{border:1px solid var(--line);border-radius:10px;padding:18px 19px;background:var(--paper);display:flex;flex-direction:column;gap:9px}
+.surface .ico{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.surface h3{font-size:16px}
+.surface p{font-size:13.3px;color:var(--muted);line-height:1.45}
+.channels{
+  margin-top:20px;padding:14px 18px;border-radius:10px;background:var(--ink);color:#C9D6E3;
+  display:flex;align-items:center;gap:26px;font-size:13.3px;flex-wrap:wrap;
+}
+.channels b{color:#fff;font-weight:600}
+.channels .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-lift)}
+
+/* ---------- box grid ---------- */
+.boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;margin-top:22px}
+.box{padding:17px 0;border-top:1px solid var(--line)}
+.box h3{margin-bottom:4px;display:flex;align-items:baseline;gap:8px}
+.box p{font-size:13.2px;color:var(--muted);line-height:1.42}
+
+.proofs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:auto;padding-top:22px}
+.proofs .shot{height:126px}
+.proofs .shot img{width:100%;height:100%;object-fit:cover;object-position:top center}
+
+/* ---------- rollout ---------- */
+.phases{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:24px;border-top:2px solid var(--ink)}
+.phase{padding:15px 16px 16px 0;border-right:1px solid var(--line)}
+.phase:last-child{border-right:0;padding-right:0}
+.phase .n{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;display:block;margin-bottom:6px}
+.phase h3{font-size:14px;margin-bottom:4px}
+.phase p{font-size:12.5px;color:var(--muted);line-height:1.4}
+
+.closing{display:grid;grid-template-columns:1.25fr 1fr;gap:44px;margin-top:auto;padding-top:22px;border-top:1px solid var(--line)}
+.cta{background:var(--ink);color:#fff;border-radius:10px;padding:20px 22px}
+.cta h3{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em;margin-bottom:7px}
+.cta p{font-size:13.4px;color:#B6C4D3;line-height:1.45}
+
+.deliver{display:flex;flex-wrap:wrap;gap:7px}
+.deliver li{list-style:none;font-size:12.5px;border:1px solid var(--line);padding:4px 10px;border-radius:6px;color:var(--muted);background:var(--paper)}
+
+@page{size:1280px 720px;margin:0}
+@media print{ body{background:#fff} .page{margin:0} }
+</style>
+</head>
+<body>
+
+<!-- ======================= 1 · COVER ======================= -->
+<section class="page dark">
+  <div class="cover">
+    <p class="eyebrow">Product brief · licensing &amp; white-label</p>
+    <h1>Structured intake and AI interviewing, under your brand.</h1>
+    <p class="lede">A working platform for organisations that take in requests from people and have to decide who to let in. Template-driven applications on one side, an AI messaging layer on the other — both already running in production.</p>
+    <div class="covermeta">
+      <div><span>Reference deployment</span><b>National membership organisation</b></div>
+      <div><span>Application templates</span><b>25, swappable</b></div>
+      <div><span>AI agents</span><b>3 · text, voice, document</b></div>
+      <div><span>Delivery</span><b>White-label, your domain</b></div>
+    </div>
+  </div>
+  <div class="pnum">01 / 09</div>
+  <div class="brandline">INTAKE &amp; INTERVIEW PLATFORM</div>
+</section>
+
+<!-- ======================= 2 · PROBLEM ======================= -->
+<section class="page">
+  <p class="eyebrow">Why this exists</p>
+  <h2>Intake is the work nobody budgets for</h2>
+  <div class="probs">
+    <div class="prob">
+      <h3><em>01</em> Requests arrive as free text</h3>
+      <p>Email, phone, walk-ins. Someone reads each one to work out what it actually is, which department owns it, and what is missing before anything can move.</p>
+    </div>
+    <div class="prob">
+      <h3><em>02</em> Staff retype the same letter</h3>
+      <p>The wording is near-identical every time. The part that genuinely varies is five or six fields — and those get keyed by hand, with the errors that follow.</p>
+    </div>
+    <div class="prob">
+      <h3><em>03</em> Applicants call to ask where they stand</h3>
+      <p>No status anywhere means every update is a phone call, and every phone call is a person who is not processing the queue.</p>
+    </div>
+    <div class="prob">
+      <h3><em>04</em> Screening happens on instinct</h3>
+      <p>Two interviewers, two sets of notes, no common ground. Nothing in the file lets a third person re-check the decision six months later.</p>
+    </div>
+  </div>
+  <div class="pnum">02 / 09</div>
+  <div class="brandline">THE PROBLEM</div>
+</section>
+
+<!-- ======================= 3 · FLOW ======================= -->
+<section class="page tint">
+  <p class="eyebrow">How it works</p>
+  <h2>One path from a person's problem to a filed, routed document</h2>
+
+  <figure class="fig">
+    <svg viewBox="0 0 1156 390" role="img" aria-label="A request flows through five stages — request, template, form, generated document, routed and tracked — while the AI messaging layer supplies the applicant profile and reviews the draft before sending.">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+        </marker>
+        <marker id="ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="#D2542A"/>
+        </marker>
+      </defs>
+
+      <g fill="none" stroke="currentColor" stroke-width="1.25">
+        <rect x="0"   y="40" width="172" height="86" rx="7"/>
+        <rect x="246" y="40" width="172" height="86" rx="7"/>
+        <rect x="492" y="40" width="172" height="86" rx="7"/>
+        <rect x="738" y="40" width="172" height="86" rx="7"/>
+        <rect x="984" y="40" width="172" height="86" rx="7"/>
+      </g>
+
+      <g font-family="IBM Plex Sans, sans-serif" fill="currentColor">
+        <text x="14" y="72"  font-size="15" font-weight="600">Request</text>
+        <text x="14" y="94"  font-size="11.5" opacity=".72">person signs in</text>
+        <text x="14" y="111" font-size="11.5" opacity=".72">and picks a subject</text>
+
+        <text x="260" y="72"  font-size="15" font-weight="600">Template</text>
+        <text x="260" y="94"  font-size="11.5" opacity=".72">carries recipient,</text>
+        <text x="260" y="111" font-size="11.5" opacity=".72">fields, documents</text>
+
+        <text x="506" y="72"  font-size="15" font-weight="600">Form</text>
+        <text x="506" y="94"  font-size="11.5" opacity=".72">profile autofill,</text>
+        <text x="506" y="111" font-size="11.5" opacity=".72">attachments</text>
+
+        <text x="752" y="72"  font-size="15" font-weight="600">Document</text>
+        <text x="752" y="94"  font-size="11.5" opacity=".72">merge fields</text>
+        <text x="752" y="111" font-size="11.5" opacity=".72">resolved</text>
+
+        <text x="998" y="72"  font-size="15" font-weight="600">Routed &amp; tracked</text>
+        <text x="998" y="94"  font-size="11.5" opacity=".72">sent to the named</text>
+        <text x="998" y="111" font-size="11.5" opacity=".72">recipient, status kept</text>
+      </g>
+
+      <g stroke="currentColor" stroke-width="1.25" marker-end="url(#ar)">
+        <line x1="178" y1="83" x2="240" y2="83"/>
+        <line x1="424" y1="83" x2="486" y2="83"/>
+        <line x1="670" y1="83" x2="732" y2="83"/>
+        <line x1="916" y1="83" x2="978" y2="83"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="currentColor" opacity=".78" text-anchor="middle">
+        <text x="209" y="73">selects</text>
+        <text x="455" y="73">fills</text>
+        <text x="701" y="73">generates</text>
+        <text x="947" y="73">submits</text>
+      </g>
+
+      <rect x="0" y="300" width="1156" height="78" rx="7" fill="#D2542A" fill-opacity=".08" stroke="#D2542A" stroke-width="1.25"/>
+      <g font-family="IBM Plex Sans, sans-serif" fill="#B0451F">
+        <text x="18" y="332" font-size="14.5" font-weight="600">AI messaging layer</text>
+        <text x="18" y="354" font-size="11.5">assistant chat · scenario interview · voice consultant</text>
+      </g>
+
+      <g stroke="#D2542A" stroke-width="1.25" marker-end="url(#ar-a)">
+        <line x1="578" y1="300" x2="578" y2="132"/>
+        <line x1="824" y1="300" x2="824" y2="132"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#B0451F">
+        <text x="590" y="228">supplies the profile</text>
+        <text x="836" y="228">reviews the draft</text>
+      </g>
+    </svg>
+    <figcaption>The engine is domain-agnostic: every stage is driven by the selected template, so changing the subject matter means changing the library, not the software. The messaging layer is not a bolt-on chat window — it feeds the form and checks the output.</figcaption>
+  </figure>
+
+  <div class="pnum">03 / 09</div>
+  <div class="brandline">ARCHITECTURE OF THE FLOW</div>
+</section>
+
+<!-- ======================= 4 · APPLICATION ENGINE ======================= -->
+<section class="page">
+  <p class="eyebrow">Module one · the application engine</p>
+  <h2>A template is a recipient, a field list and a body</h2>
+
+  <div class="two wide-left">
+    <div class="stackcol">
+      <div class="doc">
+        <div class="doc-head">Template body · merge fields resolved on generate</div>
+        I, <span class="field">full name</span>, resident at <span class="field">address</span>, am applying in respect of <span class="field">case subject</span>. The circumstances arose on <span class="field">incident date</span> and are as follows: <span class="field">description</span>. I ask that you review the matter and respond within the statutory period.
+      </div>
+      <div>
+        <div class="shot"><img src="img/appeals.jpg" alt="Application form with a selected template showing target organisations, required fields and required documents" style="height:196px;object-fit:cover;object-position:top center"></div>
+        <div class="shotcap">Live deployment · template header states who it goes to and what is required</div>
+      </div>
+    </div>
+
+    <ul class="bullets">
+      <li><span><b>Routing is part of the template.</b> Each one names the organisations it is addressed to, so the request leaves correctly addressed without a triage step.</span></li>
+      <li><span><b>Required fields and documents are declared,</b> and shown to the applicant before they start — incomplete submissions stop being the default.</span></li>
+      <li><span><b>The contact block fills itself</b> from the applicant's profile. They enter the case, not their own details, again.</span></li>
+      <li><span><b>Conditional clauses.</b> A checkbox appends a prepared paragraph to the body — used in production to let applicants add support for a specific legislative proposal.</span></li>
+      <li><span><b>Attachments:</b> PDF, DOC, DOCX, JPG, PNG, TXT, 5 MB each, carried with the submission.</span></li>
+      <li><span><b>Three outputs:</b> generate and copy the text, submit it to the recipient, or have the step-by-step instructions emailed.</span></li>
+    </ul>
+  </div>
+
+  <div class="pnum">04 / 09</div>
+  <div class="brandline">APPLICATION ENGINE</div>
+</section>
+
+<!-- ======================= 5 · LIBRARY + TRACKING ======================= -->
+<section class="page tint">
+  <p class="eyebrow">Module one, continued</p>
+  <h2>Swap the library, keep the engine</h2>
+  <p class="lede" style="margin-top:16px">The reference deployment ships 25 templates for a national membership organisation. None of that vocabulary is in the code — a template is data.</p>
+
+  <ul class="chips" style="margin-top:22px">
+    <li class="hl">Release from captivity</li><li class="hl">Missing persons</li><li class="hl">Displaced-person status</li><li class="hl">Displaced-person benefits</li>
+    <li>Prosthetics &amp; rehabilitation aids</li><li>Housing</li><li>Medicines</li><li>Treatment</li><li>Financial aid</li><li>Pension assignment</li><li>Pension recalculation</li><li>Subsidy</li><li>Disability status</li><li>Education</li><li>Living conditions</li><li>Utilities</li><li>Green spaces</li><li>Transport infrastructure</li><li>Trade-union &amp; labour</li><li>Sole traders</li><li>Stalled criminal investigation</li><li>Police misconduct</li><li>Complaint against a state body</li><li>Recreation &amp; health</li><li class="hl">Open category: proposals</li>
+  </ul>
+
+  <div class="two" style="margin-top:26px">
+    <div>
+      <h3 style="font-size:17px;margin-bottom:10px">What you author per template</h3>
+      <ul class="bullets">
+        <li><span>Recipient organisations · the addressee list</span></li>
+        <li><span>Required fields · typed, with placeholder text</span></li>
+        <li><span>Required documents · shown before the upload step</span></li>
+        <li><span>Body text with <span class="route">{{merge fields}}</span> and optional clauses</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size:17px;margin-bottom:10px">What the applicant gets back</h3>
+      <ul class="bullets">
+        <li><span>A finished document they can read before it is sent</span></li>
+        <li><span>A submission record with a status, in their own cabinet</span></li>
+        <li><span>A searchable history of everything they have filed, with the recipient shown</span></li>
+        <li><span>Instructions by email when they would rather file it themselves</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pnum">05 / 09</div>
+  <div class="brandline">TEMPLATE LIBRARY</div>
+</section>
+
+<!-- ======================= 6 · MESSAGING ======================= -->
+<section class="page">
+  <p class="eyebrow">Module two · the messaging system</p>
+  <h2>One messaging core, three surfaces</h2>
+
+  <div class="surfaces">
+    <div class="surface">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      <h3>Assistant chat</h3>
+      <p>A thread that takes a typed message, a voice note or a document in the same turn. The file travels with the message rather than through a separate upload.</p>
+    </div>
+    <div class="surface">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8M16 17H8"/></svg>
+      <h3>Scenario interview</h3>
+      <p>A turn-based session with a game-master agent. Persistent and resumable; one active session per person, so a half-finished interview cannot be restarted to get an easier run.</p>
+    </div>
+    <div class="surface">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4M8 23h8"/></svg>
+      <h3>Voice consultant</h3>
+      <p>A call button on the page, opening with the context of the screen it was launched from — on the application screen it receives the drafted text and talks the applicant through it.</p>
+    </div>
+  </div>
+
+  <div class="channels">
+    <span class="tag">One endpoint</span>
+    <span>Accepts <b>text</b>, <b>audio</b> and <b>documents</b> in the same call — new surfaces reuse the core instead of adding a second integration.</span>
+  </div>
+
+  <div class="two" style="margin-top:24px;align-items:center">
+    <ul class="bullets">
+      <li><span><b>Sessions are stored, not streamed away.</b> Every turn is written with its number, author and timestamp, so a whole conversation can be replayed later.</span></li>
+      <li><span><b>Agents carry context.</b> The interview agent is briefed from the person's profile; the application agent is briefed from the document on screen.</span></li>
+      <li><span><b>Voice is a first-class input,</b> not a transcription bolt-on — the record button sits next to the text field on every surface.</span></li>
+    </ul>
+    <div>
+      <div class="shot"><img src="img/interview.jpg" alt="Interview session interface with the agent's structured message, a text field and a record button" style="height:216px;object-fit:cover;object-position:top center"></div>
+      <div class="shotcap">Live deployment · a session in progress, turn counter top right</div>
+    </div>
+  </div>
+
+  <div class="pnum">06 / 09</div>
+  <div class="brandline">MESSAGING SYSTEM</div>
+</section>
+
+<!-- ======================= 7 · SCENARIO INTERVIEW ======================= -->
+<section class="page tint">
+  <p class="eyebrow">Module two, continued · the part competitors do not have</p>
+  <h2>Interviews you can actually compare</h2>
+
+  <div class="two wide-left" style="margin-top:22px">
+    <div class="stackcol">
+      <p class="sub" style="font-size:14.5px">The agent reads the candidate's own profile, builds a scenario around it, and then applies pressure. Everyone is tested on judgement under the same structure, and the transcript — not one interviewer's memory — is what goes in the file.</p>
+      <div class="doc" style="border-left-color:var(--ink)">
+        <div class="doc-head">Generated for a candidate whose profile said "artist, Kyiv"</div>
+        Two days before a public event, the candidate is suddenly handed coordination of five community groups. A local businessman pushes to have an advertising billboard included in the speech "as an art object", hinting at additional support for the organisation. Residents are known to object. The projector is broken.
+      </div>
+      <p class="sub">Four things are being read at once: the ethical call, the handling of a donor, communication under a deadline, and resourcefulness when the equipment fails.</p>
+    </div>
+
+    <div class="stackcol">
+      <h3 style="font-size:17px">Session mechanics</h3>
+      <ul class="bullets">
+        <li><span><b>Every turn is structured</b> — situation, goal, resources, challenge — so answers land in comparable slots.</span></li>
+        <li><span><b>Free-text replies, 3 to 2,000 characters,</b> or dictated by voice.</span></li>
+        <li><span><b>The scenario reacts.</b> Refusing the donor did not end the pressure in the live run; it changed its shape and came back in the next turn.</span></li>
+        <li><span><b>One live session per person,</b> resumable after a disconnect, abandonable on record.</span></li>
+        <li><span><b>Full transcript retained</b> per session and attached to the applicant's file.</span></li>
+        <li><span><b>Scenario briefs are yours to write</b> — the agent takes the competencies you want probed.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pnum">07 / 09</div>
+  <div class="brandline">SCENARIO INTERVIEWING</div>
+</section>
+
+<!-- ======================= 8 · IN THE BOX ======================= -->
+<section class="page">
+  <p class="eyebrow">Also included</p>
+  <h2>What ships with the two core modules</h2>
+
+  <div class="boxes">
+    <div class="box">
+      <h3>Member cabinet</h3>
+      <p>Profile assembled from the interview, application status on the card, editable details, avatar storage.</p>
+    </div>
+    <div class="box">
+      <h3>Progression ladder</h3>
+      <p>Twelve configurable levels with a progress bar and the next step named. Rename them to your own grades.</p>
+    </div>
+    <div class="box">
+      <h3>Referrals</h3>
+      <p>A personal invite link per member, with a downloadable QR code for printed material and a counter of who came in.</p>
+    </div>
+    <div class="box">
+      <h3>Branch directory</h3>
+      <p>Offices on a map with head, phone and address. The reference deployment carries 25 regional entries.</p>
+    </div>
+    <div class="box">
+      <h3>Event calendar</h3>
+      <p>Month view with status filtering — upcoming, active, finished — plus region, venue and event type per entry.</p>
+    </div>
+    <div class="box">
+      <h3>Roles, sessions, consent</h3>
+      <p>Visitor and member roles with separate surfaces, JWT access and refresh tokens in HttpOnly cookies, email verification, explicit data-processing consent captured per submission.</p>
+    </div>
+    <div class="box">
+      <h3>News feed</h3>
+      <p>Pulls from your existing public site — slider, latest items, search by headline — so the cabinet is worth opening between applications.</p>
+    </div>
+    <div class="box">
+      <h3>Address autocomplete</h3>
+      <p>Typed addresses resolve against an open geocoder, country-scoped, so region data stays clean enough to route on.</p>
+    </div>
+    <div class="box">
+      <h3>Localisation</h3>
+      <p>The running deployment is Ukrainian end to end; the interface strings and the whole template library are content, not code.</p>
+    </div>
+  </div>
+
+  <div class="proofs">
+    <figure><div class="shot"><img src="img/map.jpg" alt="Branch directory on a map"></div><div class="shotcap">Branch directory</div></figure>
+    <figure><div class="shot"><img src="img/calendar.jpg" alt="Event calendar month view"></div><div class="shotcap">Event calendar</div></figure>
+    <figure><div class="shot"><img src="img/home.jpg" alt="News feed inside the member cabinet" style="object-position:center bottom"></div><div class="shotcap">News feed in the cabinet</div></figure>
+  </div>
+
+  <div class="pnum">08 / 09</div>
+  <div class="brandline">IN THE BOX</div>
+</section>
+
+<!-- ======================= 9 · ROLLOUT ======================= -->
+<section class="page">
+  <p class="eyebrow">Getting it live</p>
+  <h2>Six steps from your forms to a running deployment</h2>
+
+  <div class="phases">
+    <div class="phase"><span class="n">01</span><h3>Brand &amp; domain</h3><p>Your identity, your domain, your sender address.</p></div>
+    <div class="phase"><span class="n">02</span><h3>Template library</h3><p>Your forms authored as templates: recipients, fields, documents, body text.</p></div>
+    <div class="phase"><span class="n">03</span><h3>Agent briefs</h3><p>The competencies you screen for, written into the interview and assistant agents.</p></div>
+    <div class="phase"><span class="n">04</span><h3>Reference data</h3><p>Branches, regions and the first calendar of events loaded.</p></div>
+    <div class="phase"><span class="n">05</span><h3>Pilot</h3><p>One department or region runs live intake end to end.</p></div>
+    <div class="phase"><span class="n">06</span><h3>Rollout</h3><p>Remaining units onboarded, admin handover, support in place.</p></div>
+  </div>
+
+  <div class="closing">
+    <div>
+      <h3 style="font-size:17px;margin-bottom:11px">What we deliver</h3>
+      <ul class="deliver">
+        <li>Deployed white-label instance</li>
+        <li>Template authoring</li>
+        <li>Agent prompt design</li>
+        <li>Data migration</li>
+        <li>Admin training &amp; handover</li>
+        <li>Ongoing support</li>
+        <li>Source access on request</li>
+      </ul>
+      <p class="sub" style="margin-top:16px">Commercial structure: licence, one-off setup, and support — terms depend on scale and on how much of the template library you want authored for you.</p>
+    </div>
+    <div class="cta">
+      <h3>Next step</h3>
+      <p>Send us one form you process by hand today. We will author it as a template, run a real submission through the engine, and show you the generated document and the applicant's view of it.</p>
+    </div>
+  </div>
+
+  <div class="pnum">09 / 09</div>
+  <div class="brandline">ROLLOUT &amp; COMMERCIAL</div>
+</section>
+
+</body>
+</html>

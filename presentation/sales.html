@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Платформа обращений и интервью</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ink:#0F1A2A; --ink-2:#1B2A3E;
+  --paper:#FFFFFF; --paper-2:#F1F4F8; --paper-3:#E7ECF2;
+  --body-ink:#152131; --muted:#5A6878; --muted-2:#8593A3;
+  --line:#D7DDE5; --line-dark:#2B3B51;
+  --accent:#D2542A; --accent-soft:#FBEDE7; --accent-lift:#F07A4C;
+  --display:"Onest","Helvetica Neue",sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--paper-2);color:var(--body-ink);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+
+.page{
+  width:1280px;height:720px;background:var(--paper);
+  padding:54px 62px;display:flex;flex-direction:column;
+  position:relative;overflow:hidden;margin:0 auto 24px;break-after:page;
+}
+.page:last-child{break-after:auto;margin-bottom:0}
+.page.dark{background:var(--ink);color:#EEF2F7}
+.page.tint{background:var(--paper-2)}
+
+h1,h2,h3{margin:0;text-wrap:balance;font-family:var(--display)}
+h1{font-weight:700;font-size:50px;line-height:1.06;letter-spacing:-.022em}
+h2{font-weight:700;font-size:33px;line-height:1.1;letter-spacing:-.018em}
+h3{font-family:var(--body);font-weight:600;font-size:15.5px;line-height:1.3}
+p{margin:0}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent);flex:none}
+.dark .eyebrow{color:var(--accent-lift)}
+.dark .eyebrow::before{background:var(--accent-lift)}
+
+.lede{font-size:18px;line-height:1.48;color:var(--muted);max-width:60ch}
+.dark .lede{color:#AEBCCB}
+.sub{color:var(--muted);font-size:13.5px;line-height:1.45}
+.route{font-family:var(--mono);font-size:11.5px;background:var(--paper-2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;color:var(--muted)}
+
+.pnum,.brandline{
+  position:absolute;bottom:26px;font-family:var(--mono);font-size:10.5px;
+  color:var(--muted-2);letter-spacing:.1em;font-variant-numeric:tabular-nums;
+}
+.pnum{left:62px}
+.brandline{right:62px}
+.dark .pnum,.dark .brandline{color:#6E7F92}
+
+/* ---------- обложка ---------- */
+.cover{flex:1;display:flex;flex-direction:column;justify-content:center}
+.cover h1{max-width:17ch}
+.cover .lede{margin-top:24px}
+.covermeta{display:flex;gap:0;margin-top:44px;border-top:1px solid var(--line-dark)}
+.covermeta div{padding:16px 28px 0 0;margin-right:28px;border-right:1px solid var(--line-dark)}
+.covermeta div:last-child{border-right:0;margin-right:0}
+.covermeta span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:#6E7F92;margin-bottom:5px}
+.covermeta b{font-weight:500;font-size:14.5px;color:#EEF2F7}
+
+/* ---------- проблема ---------- */
+.probs{display:grid;grid-template-columns:1fr 1fr;gap:0 46px;margin-top:24px;flex:1;align-content:start}
+.prob{padding:19px 0;border-bottom:1px solid var(--line)}
+.prob h3{font-size:16.5px;margin-bottom:5px;display:flex;gap:10px;align-items:baseline}
+.prob h3 em{font-family:var(--mono);font-style:normal;font-size:12px;color:var(--accent)}
+.prob p{font-size:13.6px;color:var(--muted);line-height:1.45}
+
+/* ---------- схема ---------- */
+figure{margin:0}
+.fig{margin-top:20px}
+.fig svg{width:100%;height:auto;display:block}
+figcaption{font-size:13px;color:var(--muted);margin-top:14px;max-width:92ch}
+
+/* ---------- две колонки ---------- */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:42px;margin-top:22px;flex:1}
+.two.wide-left{grid-template-columns:1.12fr 1fr}
+.stackcol{display:flex;flex-direction:column;gap:14px}
+
+.doc{
+  background:var(--paper-2);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:0 8px 8px 0;padding:15px 18px;font-size:13.3px;line-height:1.72;
+}
+.doc .field{font-family:var(--mono);font-size:11.8px;background:var(--accent-soft);color:#9B3A17;border-radius:4px;padding:1px 5px}
+.doc-head{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2);margin-bottom:9px}
+
+.bullets{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.bullets li{display:grid;grid-template-columns:13px 1fr;gap:11px;font-size:13.5px;color:var(--muted);line-height:1.45}
+.bullets li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);margin-top:8px}
+.bullets b{color:var(--body-ink);font-weight:600}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px;list-style:none;margin:0;padding:0}
+.chips li{font-size:12.2px;border:1px solid var(--line);background:var(--paper);color:var(--muted);padding:3px 9px;border-radius:999px}
+.chips li.hl{border-color:var(--accent);background:var(--accent-soft);color:#9B3A17}
+
+.shot{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper-2)}
+.shot img{width:100%;display:block}
+.shotcap{font-family:var(--mono);font-size:10.5px;color:var(--muted-2);margin-top:7px;letter-spacing:.05em;text-transform:uppercase}
+
+/* ---------- поверхности ---------- */
+.surfaces{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.surface{border:1px solid var(--line);border-radius:10px;padding:17px 18px;background:var(--paper);display:flex;flex-direction:column;gap:8px}
+.surface .ico{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.surface h3{font-size:15.5px}
+.surface p{font-size:13px;color:var(--muted);line-height:1.45}
+.channels{
+  margin-top:18px;padding:13px 18px;border-radius:10px;background:var(--ink);color:#C9D6E3;
+  display:flex;align-items:center;gap:24px;font-size:13.1px;flex-wrap:wrap;
+}
+.channels b{color:#fff;font-weight:600}
+.channels .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-lift)}
+
+/* ---------- сетка «в коробке» ---------- */
+.boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:0 38px;margin-top:20px}
+.box{padding:15px 0;border-top:1px solid var(--line)}
+.box h3{margin-bottom:4px;font-size:15px}
+.box p{font-size:12.9px;color:var(--muted);line-height:1.4}
+
+.proofs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:auto;padding-top:20px}
+.proofs .shot{height:126px}
+.proofs .shot img{width:100%;height:100%;object-fit:cover;object-position:top center}
+
+/* ---------- внедрение ---------- */
+.phases{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:22px;border-top:2px solid var(--ink)}
+.phase{padding:15px 15px 16px 0;border-right:1px solid var(--line)}
+.phase:last-child{border-right:0;padding-right:0}
+.phase .n{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.1em;display:block;margin-bottom:6px}
+.phase h3{font-size:13.6px;margin-bottom:4px}
+.phase p{font-size:12.2px;color:var(--muted);line-height:1.4}
+
+.closing{display:grid;grid-template-columns:1.25fr 1fr;gap:42px;margin-top:auto;padding-top:20px;border-top:1px solid var(--line)}
+.cta{background:var(--ink);color:#fff;border-radius:10px;padding:19px 21px}
+.cta h3{font-family:var(--display);font-weight:700;font-size:18.5px;letter-spacing:-.01em;margin-bottom:7px}
+.cta p{font-size:13.2px;color:#B6C4D3;line-height:1.45}
+
+.deliver{display:flex;flex-wrap:wrap;gap:7px;padding:0;margin:0}
+.deliver li{list-style:none;font-size:12.4px;border:1px solid var(--line);padding:4px 10px;border-radius:6px;color:var(--muted);background:var(--paper)}
+
+@page{size:1280px 720px;margin:0}
+@media print{ body{background:#fff} .page{margin:0} }
+</style>
+</head>
+<body>
+
+<!-- ======================= 1 · ОБЛОЖКА ======================= -->
+<section class="page dark">
+  <div class="cover">
+    <p class="eyebrow">Коммерческое предложение · лицензия и white-label</p>
+    <h1>Приём обращений и AI-интервью — под вашим брендом.</h1>
+    <p class="lede">Платформа для политических организаций: партия принимает обращения избирателей и решает, кого брать в актив. Шаблонный конструктор обращений с одной стороны, слой AI-сообщений с другой — и то и другое уже работает в проде.</p>
+    <div class="covermeta">
+      <div><span>Референс-внедрение</span><b>Национальная партия</b></div>
+      <div><span>Шаблонов обращений</span><b>25, заменяемых</b></div>
+      <div><span>AI-агентов</span><b>3 · текст, голос, файл</b></div>
+      <div><span>Поставка</span><b>White-label, ваш домен</b></div>
+    </div>
+  </div>
+  <div class="pnum">01 / 09</div>
+  <div class="brandline">ПЛАТФОРМА ОБРАЩЕНИЙ И ИНТЕРВЬЮ</div>
+</section>
+
+<!-- ======================= 2 · ПРОБЛЕМА ======================= -->
+<section class="page">
+  <p class="eyebrow">Зачем это партии</p>
+  <h2>Приёмная — та работа, которую никто не считает</h2>
+  <div class="probs">
+    <div class="prob">
+      <h3><em>01</em> Обращения приходят как попало</h3>
+      <p>Почта, телефон, живая приёмная, личные сообщения в соцсетях. Кто-то вручную читает каждое, чтобы понять, о чём оно, чьё оно и чего в нём не хватает.</p>
+    </div>
+    <div class="prob">
+      <h3><em>02</em> Помощники перепечатывают одно и то же письмо</h3>
+      <p>Формулировки почти не меняются. Меняются пять-шесть полей — и именно их набирают руками, со всеми вытекающими опечатками в номерах и датах.</p>
+    </div>
+    <div class="prob">
+      <h3><em>03</em> Избиратель звонит узнать, что с его обращением</h3>
+      <p>Статуса нигде нет, поэтому каждое «как там моё?» — это звонок, а каждый звонок — сотрудник, который в этот момент не разбирает очередь.</p>
+    </div>
+    <div class="prob">
+      <h3><em>04</em> Актив набирают на глаз</h3>
+      <p>Два собеседующих — два набора заметок и никакой общей шкалы. Через полгода в деле нет ничего, по чему третий человек мог бы перепроверить решение.</p>
+    </div>
+  </div>
+  <div class="pnum">02 / 09</div>
+  <div class="brandline">ПРОБЛЕМА</div>
+</section>
+
+<!-- ======================= 3 · СХЕМА ======================= -->
+<section class="page tint">
+  <p class="eyebrow">Как это устроено</p>
+  <h2>Один путь: от проблемы человека до отправленного документа</h2>
+
+  <figure class="fig">
+    <svg viewBox="0 0 1156 390" role="img" aria-label="Обращение проходит пять стадий — обращение, шаблон, форма, готовый документ, отправка и статус — а слой AI-сообщений отдаёт профиль в форму и проверяет черновик перед отправкой.">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+        </marker>
+        <marker id="ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="#D2542A"/>
+        </marker>
+      </defs>
+
+      <g fill="none" stroke="currentColor" stroke-width="1.25">
+        <rect x="0"   y="40" width="172" height="86" rx="7"/>
+        <rect x="246" y="40" width="172" height="86" rx="7"/>
+        <rect x="492" y="40" width="172" height="86" rx="7"/>
+        <rect x="738" y="40" width="172" height="86" rx="7"/>
+        <rect x="984" y="40" width="172" height="86" rx="7"/>
+      </g>
+
+      <g font-family="IBM Plex Sans, sans-serif" fill="currentColor">
+        <text x="14" y="72"  font-size="15" font-weight="600">Обращение</text>
+        <text x="14" y="94"  font-size="11.5" opacity=".72">человек входит</text>
+        <text x="14" y="111" font-size="11.5" opacity=".72">и выбирает тему</text>
+
+        <text x="260" y="72"  font-size="15" font-weight="600">Шаблон</text>
+        <text x="260" y="94"  font-size="11.5" opacity=".72">несёт адресата,</text>
+        <text x="260" y="111" font-size="11.5" opacity=".72">поля, документы</text>
+
+        <text x="506" y="72"  font-size="15" font-weight="600">Форма</text>
+        <text x="506" y="94"  font-size="11.5" opacity=".72">автозаполнение,</text>
+        <text x="506" y="111" font-size="11.5" opacity=".72">вложения</text>
+
+        <text x="752" y="72"  font-size="15" font-weight="600">Документ</text>
+        <text x="752" y="94"  font-size="11.5" opacity=".72">подстановки</text>
+        <text x="752" y="111" font-size="11.5" opacity=".72">раскрыты</text>
+
+        <text x="998" y="72"  font-size="15" font-weight="600">Отправлено</text>
+        <text x="998" y="94"  font-size="11.5" opacity=".72">адресату,</text>
+        <text x="998" y="111" font-size="11.5" opacity=".72">статус сохранён</text>
+      </g>
+
+      <g stroke="currentColor" stroke-width="1.25" marker-end="url(#ar)">
+        <line x1="178" y1="83" x2="240" y2="83"/>
+        <line x1="424" y1="83" x2="486" y2="83"/>
+        <line x1="670" y1="83" x2="732" y2="83"/>
+        <line x1="916" y1="83" x2="978" y2="83"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="currentColor" opacity=".78" text-anchor="middle">
+        <text x="209" y="73">выбирает</text>
+        <text x="455" y="73">заполняет</text>
+        <text x="701" y="73">формирует</text>
+        <text x="947" y="73">отправляет</text>
+      </g>
+
+      <rect x="0" y="300" width="1156" height="78" rx="7" fill="#D2542A" fill-opacity=".08" stroke="#D2542A" stroke-width="1.25"/>
+      <g font-family="IBM Plex Sans, sans-serif" fill="#B0451F">
+        <text x="18" y="332" font-size="14.5" font-weight="600">Слой AI-сообщений</text>
+        <text x="18" y="354" font-size="11.5">ассистент-чат · сценарное интервью · голосовой консультант</text>
+      </g>
+
+      <g stroke="#D2542A" stroke-width="1.25" marker-end="url(#ar-a)">
+        <line x1="578" y1="300" x2="578" y2="132"/>
+        <line x1="824" y1="300" x2="824" y2="132"/>
+      </g>
+      <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#B0451F">
+        <text x="590" y="228">отдаёт профиль</text>
+        <text x="836" y="228">проверяет черновик</text>
+      </g>
+    </svg>
+    <figcaption>Движок не знает предметной области: каждая стадия управляется выбранным шаблоном, поэтому смена тематики — это смена библиотеки, а не переписывание кода. Слой сообщений здесь не приделанный сбоку чат: он питает форму данными и проверяет то, что получилось на выходе.</figcaption>
+  </figure>
+
+  <div class="pnum">03 / 09</div>
+  <div class="brandline">АРХИТЕКТУРА ПОТОКА</div>
+</section>
+
+<!-- ======================= 4 · КОНСТРУКТОР ОБРАЩЕНИЙ ======================= -->
+<section class="page">
+  <p class="eyebrow">Модуль первый · конструктор обращений</p>
+  <h2>Шаблон — это адресат, список полей и текст</h2>
+
+  <div class="two wide-left">
+    <div class="stackcol">
+      <div class="doc">
+        <div class="doc-head">Тело шаблона · подстановки раскрываются при формировании</div>
+        Я, <span class="field">ФИО</span>, проживающий по адресу <span class="field">адрес</span>, обращаюсь по вопросу <span class="field">предмет обращения</span>. Обстоятельства возникли <span class="field">дата события</span> и состоят в следующем: <span class="field">описание</span>. Прошу рассмотреть обращение и дать ответ в установленный законом срок.
+      </div>
+      <div>
+        <div class="shot"><img src="img/appeals.jpg" alt="Форма обращения с выбранным шаблоном: целевые организации, обязательные поля и необходимые документы" style="height:190px;object-fit:cover;object-position:top center"></div>
+        <div class="shotcap">Живое внедрение · шапка шаблона говорит, кому уходит и что нужно приложить</div>
+      </div>
+    </div>
+
+    <ul class="bullets">
+      <li><span><b>Маршрутизация зашита в шаблон.</b> Каждый называет организации-адресаты, и обращение уходит правильно адресованным без ручной сортировки.</span></li>
+      <li><span><b>Обязательные поля и документы объявлены</b> и показаны человеку до начала заполнения — неполные обращения перестают быть нормой.</span></li>
+      <li><span><b>Контактный блок заполняется сам</b> из профиля. Человек вводит суть дела, а не свои паспортные данные в сотый раз.</span></li>
+      <li><span><b>Условные абзацы.</b> Галочка дописывает в тело готовый фрагмент — в проде так дают поддержать конкретный законопроект прямо из обращения.</span></li>
+      <li><span><b>Вложения:</b> PDF, DOC, DOCX, JPG, PNG, TXT, по 5 МБ, уходят вместе с обращением.</span></li>
+      <li><span><b>Три выхода:</b> сформировать и скопировать текст, отправить адресату или получить пошаговую инструкцию на почту.</span></li>
+    </ul>
+  </div>
+
+  <div class="pnum">04 / 09</div>
+  <div class="brandline">КОНСТРУКТОР ОБРАЩЕНИЙ</div>
+</section>
+
+<!-- ======================= 5 · БИБЛИОТЕКА ======================= -->
+<section class="page tint">
+  <p class="eyebrow">Модуль первый, продолжение</p>
+  <h2>Поменяйте библиотеку — движок останется</h2>
+  <p class="lede" style="margin-top:14px">В референс-внедрении 25 шаблонов национальной партии. Ни одного из этих слов нет в коде: шаблон — это данные.</p>
+
+  <ul class="chips" style="margin-top:20px">
+    <li class="hl">Освобождение из плена</li><li class="hl">Поиск пропавших без вести</li><li class="hl">Статус переселенца</li><li class="hl">Льготы переселенцам</li>
+    <li>Протезирование и реабилитация</li><li>Жильё</li><li>Лекарства</li><li>Лечение</li><li>Материальная помощь</li><li>Назначение пенсии</li><li>Перерасчёт пенсии</li><li>Субсидия</li><li>Группа инвалидности</li><li>Обучение</li><li>Условия проживания</li><li>Коммунальные услуги</li><li>Озеленение и зоны отдыха</li><li>Транспортная инфраструктура</li><li>Профсоюзы и труд</li><li>Предприниматели</li><li>Затянувшееся расследование</li><li>Действия правоохранителей</li><li>Жалоба на госорган</li><li>Оздоровление</li><li class="hl">Отдельная категория: предложения</li>
+  </ul>
+
+  <div class="two" style="margin-top:24px">
+    <div>
+      <h3 style="font-size:16.5px;margin-bottom:10px">Что вы описываете в шаблоне</h3>
+      <ul class="bullets">
+        <li><span>Организации-адресаты — кому уходит обращение</span></li>
+        <li><span>Обязательные поля — с типом и подсказкой ввода</span></li>
+        <li><span>Необходимые документы — показываются до загрузки</span></li>
+        <li><span>Текст с <span class="route">{{подстановками}}</span> и условными абзацами</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size:16.5px;margin-bottom:10px">Что получает заявитель</h3>
+      <ul class="bullets">
+        <li><span>Готовый документ, который можно прочитать до отправки</span></li>
+        <li><span>Запись об обращении со статусом в личном кабинете</span></li>
+        <li><span>Историю всех своих обращений с поиском и адресатом</span></li>
+        <li><span>Инструкцию на почту, если хочет подать сам</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pnum">05 / 09</div>
+  <div class="brandline">БИБЛИОТЕКА ШАБЛОНОВ</div>
+</section>
+
+<!-- ======================= 6 · СИСТЕМА СООБЩЕНИЙ ======================= -->
+<section class="page">
+  <p class="eyebrow">Модуль второй · система сообщений</p>
+  <h2>Одно ядро сообщений, три поверхности</h2>
+
+  <div class="surfaces">
+    <div class="surface">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+      <h3>Ассистент-чат</h3>
+      <p>Тред, который принимает в одном ходе текст, голосовое или документ. Файл едет вместе с сообщением, а не через отдельную форму загрузки.</p>
+    </div>
+    <div class="surface">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8M16 17H8"/></svg>
+      <h3>Сценарное интервью</h3>
+      <p>Пошаговая сессия с агентом-ведущим. Сохраняется и продолжается после разрыва; одна активная сессия на человека — переиграть на более лёгкий сценарий нельзя.</p>
+    </div>
+    <div class="surface">
+      <svg class="ico" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4M8 23h8"/></svg>
+      <h3>Голосовой консультант</h3>
+      <p>Кнопка звонка на странице: открывается с контекстом того экрана, откуда вызвана. На экране обращений получает готовый текст и проговаривает его с человеком.</p>
+    </div>
+  </div>
+
+  <div class="channels">
+    <span class="tag">Одна точка входа</span>
+    <span>Принимает <b>текст</b>, <b>аудио</b> и <b>документы</b> одним вызовом — новая поверхность переиспользует ядро, а не требует второй интеграции.</span>
+  </div>
+
+  <div class="two" style="margin-top:22px;align-items:center">
+    <ul class="bullets">
+      <li><span><b>Сессии хранятся, а не утекают.</b> Каждый ход пишется с номером, автором и временем — разговор целиком можно поднять позже.</span></li>
+      <li><span><b>Агенты работают с контекстом.</b> Интервьюера инструктирует профиль человека, ассистента обращений — документ на экране.</span></li>
+      <li><span><b>Голос — полноценный ввод,</b> а не расшифровка сбоку: кнопка записи стоит рядом с полем на каждой поверхности.</span></li>
+    </ul>
+    <div>
+      <div class="shot"><img src="img/interview.jpg" alt="Интерфейс сессии интервью: структурированное сообщение агента, поле ввода и кнопка записи" style="height:210px;object-fit:cover;object-position:top center"></div>
+      <div class="shotcap">Живое внедрение · сессия в процессе, счётчик ходов справа вверху</div>
+    </div>
+  </div>
+
+  <div class="pnum">06 / 09</div>
+  <div class="brandline">СИСТЕМА СООБЩЕНИЙ</div>
+</section>
+
+<!-- ======================= 7 · СЦЕНАРНОЕ ИНТЕРВЬЮ ======================= -->
+<section class="page tint">
+  <p class="eyebrow">Модуль второй, продолжение · то, чего нет у конкурентов</p>
+  <h2>Интервью, которые можно сравнивать между собой</h2>
+
+  <div class="two wide-left" style="margin-top:20px">
+    <div class="stackcol">
+      <p class="sub" style="font-size:14.3px">Агент читает анкету кандидата, строит сценарий вокруг неё и начинает давить. Всех проверяют на решения в одинаковой структуре, а в дело идёт стенограмма, а не память одного собеседующего.</p>
+      <div class="doc" style="border-left-color:var(--ink)">
+        <div class="doc-head">Сгенерировано кандидату, у которого в анкете «художник, Киев»</div>
+        За двое суток до публичного мероприятия на кандидата внезапно падает координация пяти инициативных групп. Местный предприниматель давит, чтобы в выступление вошёл рекламный билборд «как арт-объект», намекая на дополнительную поддержку организации. Часть жителей против. Проектор неисправен.
+      </div>
+      <p class="sub">Одновременно читаются четыре вещи: этический выбор, работа с донором, коммуникация в дедлайне и находчивость, когда техника подвела.</p>
+    </div>
+
+    <div class="stackcol">
+      <h3 style="font-size:16.5px">Механика сессии</h3>
+      <ul class="bullets">
+        <li><span><b>Каждый ход структурирован</b> — ситуация, цель, ресурсы, вызов, — поэтому ответы ложатся в сопоставимые ячейки.</span></li>
+        <li><span><b>Свободный ответ от 3 до 2000 знаков</b> или надиктованный голосом.</span></li>
+        <li><span><b>Сценарий реагирует.</b> В живом прогоне отказ предпринимателю не снял давление — оно сменило форму и вернулось следующим ходом.</span></li>
+        <li><span><b>Одна живая сессия на человека,</b> с возвратом после разрыва и фиксацией отказа.</span></li>
+        <li><span><b>Полная стенограмма</b> хранится по сессии и прикладывается к делу кандидата.</span></li>
+        <li><span><b>Сценарные брифы пишете вы</b> — агент принимает те компетенции, которые нужно проверить вам.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pnum">07 / 09</div>
+  <div class="brandline">СЦЕНАРНОЕ ИНТЕРВЬЮ</div>
+</section>
+
+<!-- ======================= 8 · В КОРОБКЕ ======================= -->
+<section class="page">
+  <p class="eyebrow">Что идёт вместе с двумя основными модулями</p>
+  <h2>Остальная партийная механика — в коробке</h2>
+
+  <div class="boxes">
+    <div class="box">
+      <h3>Личный кабинет</h3>
+      <p>Профиль, собранный из интервью, статус заявки на карточке, редактирование данных, хранение аватара.</p>
+    </div>
+    <div class="box">
+      <h3>Лестница из 12 уровней</h3>
+      <p>Партийный рост со шкалой прогресса и названной следующей ступенью. Переименуйте под свою структуру.</p>
+    </div>
+    <div class="box">
+      <h3>Рефералы</h3>
+      <p>Личная ссылка-приглашение у каждого, QR-код на скачивание для раздатки и счётчик приведённых.</p>
+    </div>
+    <div class="box">
+      <h3>Карта отделений</h3>
+      <p>Региональные офисы на карте: руководитель, телефон, адрес. В референс-внедрении 25 записей.</p>
+    </div>
+    <div class="box">
+      <h3>Календарь мероприятий</h3>
+      <p>Месячная сетка с фильтром по статусу — предстоящие, идущие, завершённые, — плюс регион, место и тип.</p>
+    </div>
+    <div class="box">
+      <h3>Роли, сессии, согласия</h3>
+      <p>Разделение «посетитель / член организации», JWT с refresh в HttpOnly-куках, подтверждение почты, явное согласие на обработку данных под каждым обращением.</p>
+    </div>
+    <div class="box">
+      <h3>Новостная лента</h3>
+      <p>Тянет с вашего публичного сайта — слайдер, последние материалы, поиск по заголовку, — чтобы кабинет открывали и между обращениями.</p>
+    </div>
+    <div class="box">
+      <h3>Автодополнение адресов</h3>
+      <p>Адрес разрешается по открытому геокодеру в пределах страны, поэтому региональные данные остаются пригодными для маршрутизации.</p>
+    </div>
+    <div class="box">
+      <h3>Локализация</h3>
+      <p>Работающее внедрение целиком украиноязычное; строки интерфейса и вся библиотека шаблонов — контент, а не код.</p>
+    </div>
+  </div>
+
+  <div class="proofs">
+    <figure><div class="shot"><img src="img/map.jpg" alt="Карта региональных отделений"></div><div class="shotcap">Карта отделений</div></figure>
+    <figure><div class="shot"><img src="img/calendar.jpg" alt="Календарь мероприятий"></div><div class="shotcap">Календарь мероприятий</div></figure>
+    <figure><div class="shot"><img src="img/home.jpg" alt="Новостная лента в кабинете" style="object-position:center bottom"></div><div class="shotcap">Лента в кабинете</div></figure>
+  </div>
+
+  <div class="pnum">08 / 09</div>
+  <div class="brandline">В КОРОБКЕ</div>
+</section>
+
+<!-- ======================= 9 · ВНЕДРЕНИЕ ======================= -->
+<section class="page">
+  <p class="eyebrow">Как это запускается</p>
+  <h2>Шесть шагов от ваших бланков до работающего внедрения</h2>
+
+  <div class="phases">
+    <div class="phase"><span class="n">01</span><h3>Бренд и домен</h3><p>Ваша символика, ваш домен, ваш адрес отправителя.</p></div>
+    <div class="phase"><span class="n">02</span><h3>Библиотека шаблонов</h3><p>Ваши бланки как шаблоны: адресаты, поля, документы, текст.</p></div>
+    <div class="phase"><span class="n">03</span><h3>Брифы агентов</h3><p>Компетенции, которые вы проверяете, — в интервьюера и ассистента.</p></div>
+    <div class="phase"><span class="n">04</span><h3>Справочники</h3><p>Отделения, регионы и первый календарь мероприятий.</p></div>
+    <div class="phase"><span class="n">05</span><h3>Пилот</h3><p>Одно отделение ведёт живой приём обращений от начала до конца.</p></div>
+    <div class="phase"><span class="n">06</span><h3>Раскатка</h3><p>Остальные отделения, передача админки, поддержка.</p></div>
+  </div>
+
+  <div class="closing">
+    <div>
+      <h3 style="font-size:16.5px;margin-bottom:11px">Что делаем мы</h3>
+      <ul class="deliver">
+        <li>Развёрнутый white-label инстанс</li>
+        <li>Разработка шаблонов</li>
+        <li>Промпты агентов</li>
+        <li>Перенос данных</li>
+        <li>Обучение администраторов</li>
+        <li>Поддержка</li>
+        <li>Доступ к исходникам по запросу</li>
+      </ul>
+      <p class="sub" style="margin-top:15px">Коммерческая структура: лицензия, разовое внедрение и поддержка. Условия зависят от масштаба сети отделений и от того, какую часть библиотеки шаблонов мы пишем за вас.</p>
+    </div>
+    <div class="cta">
+      <h3>Следующий шаг</h3>
+      <p>Пришлите один бланк, который у вас сегодня заполняют руками. Мы оформим его как шаблон, прогоним настоящее обращение через движок и покажем готовый документ и то, что видит заявитель.</p>
+    </div>
+  </div>
+
+  <div class="pnum">09 / 09</div>
+  <div class="brandline">ВНЕДРЕНИЕ И КОММЕРЦИЯ</div>
+</section>
+
+</body>
+</html>
